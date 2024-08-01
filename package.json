@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "prepare": "husky",
     "commit": "git-cz",
-    "release": "standard-version --no-verify"
+    "release": "standard-version --no-verify",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "axios": "^1.7.2",
