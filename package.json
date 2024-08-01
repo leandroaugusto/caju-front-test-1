@@ -11,7 +11,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "standard-version --no-verify"
   },
   "dependencies": {
     "axios": "^1.7.2",
@@ -46,6 +47,7 @@
     "husky": "^9.1.4",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "29.7.0",
+    "standard-version": "^9.5.0",
     "ts-jest": "29.1.2",
     "ts-node": "10.9.2",
     "typescript": "^5.2.2",
