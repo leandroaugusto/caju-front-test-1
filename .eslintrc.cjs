@@ -14,6 +14,7 @@ module.exports = {
     "eslint-config-prettier",
     "plugin:react-hooks/recommended",
   ],
+  ignorePatterns: ["node_modules/*", ".eslintcache"],
   settings: {
     react: {
       version: "detect",
