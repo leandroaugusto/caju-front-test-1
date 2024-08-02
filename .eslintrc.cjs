@@ -1,21 +1,28 @@
 module.exports = {
+  root: true,
+  env: {
+    node: true,
+    browser: true,
+    es2020: true,
+  },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:import/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'eslint-config-prettier',
-    "plugin:react-hooks/recommended"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint-config-prettier",
+    "plugin:react-hooks/recommended",
   ],
+  ignorePatterns: ["node_modules/*", ".eslintcache"],
   settings: {
     react: {
-      version: 'detect',
+      version: "detect",
     },
-    'import/resolver': {
+    "import/resolver": {
       node: {
-        paths: ['src'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        paths: ["src"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
     },
   },
@@ -23,10 +30,10 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "react/react-in-jsx-scope": "off",
     "import/no-named-as-default": 0,
-    "import/no-unresolved": ["error", { "ignore": ["^@/"] }],
+    "import/no-unresolved": ["error", { ignore: ["^~/"] }],
     "react/display-name": "off",
     "@typescript-eslint/ban-types": "off",
     "import/named": "off",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
   },
 };

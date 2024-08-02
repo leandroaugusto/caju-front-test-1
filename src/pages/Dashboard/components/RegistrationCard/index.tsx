@@ -1,5 +1,3 @@
-import { ButtonSmall } from "~/components/Buttons";
-import * as S from "./styles";
 import {
   HiOutlineMail,
   HiOutlineUser,
@@ -7,27 +5,30 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 
-type Props = {
-  data: any;
-};
+import { ButtonSmall } from "~/components/Buttons";
 
-const RegistrationCard = (props: Props) => {
+import * as S from "./styles";
+import { IRegistrationCardProps } from "./types";
+
+const RegistrationCard = ({ data }: IRegistrationCardProps) => {
+  const { employeeName, email, admissionDate } = data;
+
   return (
     <S.Card>
       <S.IconAndText>
         <HiOutlineUser />
-        <h3>{props.data.employeeName}</h3>
+        <h3 data-testid="employee-name">{employeeName}</h3>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineMail />
-        <p>{props.data.email}</p>
+        <p data-testid="employee-email">{email}</p>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineCalendar />
-        <span>{props.data.admissionDate}</span>
+        <span data-testid="employee-admission-date">{admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)" >Reprovar</ButtonSmall>
+        <ButtonSmall bgcolor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
         <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
         <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
 
