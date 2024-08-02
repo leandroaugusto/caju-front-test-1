@@ -15,7 +15,21 @@ const registrationsMock: TRegistrationsData = {
 describe("RegistrationCard", () => {
   it("Should show RegistrationCard component", () => {
     const { container } = render(<RegistrationCard data={registrationsMock} />);
-    expect(screen.getByRole("button", { name: /ativar/i }));
+
+    const employeeNameContainer = screen.getByTestId("employee-name");
+    const employeeEmailContainer = screen.getByTestId("employee-email");
+    const employeeAdmissionDateContainer = screen.getByTestId(
+      "employee-admission-date"
+    );
+
+    expect(employeeNameContainer).toHaveTextContent(
+      registrationsMock.employeeName
+    );
+    expect(employeeEmailContainer).toHaveTextContent(registrationsMock.email);
+    expect(employeeAdmissionDateContainer).toHaveTextContent(
+      registrationsMock.admissionDate
+    );
+
     expect(container).toMatchSnapshot();
   });
 });

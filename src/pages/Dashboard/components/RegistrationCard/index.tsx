@@ -17,15 +17,15 @@ const RegistrationCard = ({ data }: IRegistrationCardProps) => {
     <S.Card>
       <S.IconAndText>
         <HiOutlineUser />
-        <h3>{employeeName}</h3>
+        <h3 data-testid="employee-name">{employeeName}</h3>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineMail />
-        <p>{email}</p>
+        <p data-testid="employee-email">{email}</p>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineCalendar />
-        <span>{admissionDate}</span>
+        <span data-testid="employee-admission-date">{admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
         <ButtonSmall bgcolor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
