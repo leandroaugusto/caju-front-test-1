@@ -1,5 +1,5 @@
 import { TRegistrationsData } from "~/types/registrations.types";
 
-export interface ICollumnsProps {
+export interface IColumnsProps {
   registrations?: TRegistrationsData[];
 };

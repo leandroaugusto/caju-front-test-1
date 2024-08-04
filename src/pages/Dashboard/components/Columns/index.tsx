@@ -1,11 +1,11 @@
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
 import { allColumns } from "./constants";
-import { ICollumnsProps } from "./types";
+import { IColumnsProps } from "./types";
 
-const Collumns = ({ registrations }: ICollumnsProps) => {
+export const Columns = ({ registrations }: IColumnsProps) => {
   return (
-    <S.Container>
+    <S.Container data-testid="columns-container">
       {allColumns.map((collum) => {
         return (
           <S.Column status={collum.status} key={collum.title}>
@@ -15,7 +15,6 @@ const Collumns = ({ registrations }: ICollumnsProps) => {
               </S.TitleColumn>
               <S.CollumContent>
                 {registrations?.map((registration) => {
-                  console.log("[OFF] 2", { registration });
                   return (
                     <RegistrationCard
                       data={registration}
@@ -31,4 +30,3 @@ const Collumns = ({ registrations }: ICollumnsProps) => {
     </S.Container>
   );
 };
-export default Collumns;
