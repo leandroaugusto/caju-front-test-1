@@ -11,10 +11,10 @@ export const SearchBar = () => {
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
   };
-  
+
   return (
-    <S.Container>
-      <TextField  placeholder="Digite um CPF válido" />
+    <S.Container data-testid="search-bar-container">
+      <TextField placeholder="Digite um CPF válido" />
       <S.Actions>
         <IconButton aria-label="refetch">
           <HiRefresh />
@@ -24,3 +24,5 @@ export const SearchBar = () => {
     </S.Container>
   );
 };
+
+// export default SearchBar;

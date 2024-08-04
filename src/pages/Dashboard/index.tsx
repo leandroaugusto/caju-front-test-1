@@ -1,27 +1,25 @@
-import Collumns from "./components/Columns";
-import * as S from "./styles";
-import { SearchBar } from "./components/Searchbar";
 import { TRegistrationsData } from "~/types/registrations.types";
 
-const DashboardPage = () => {
-  const registrations: TRegistrationsData[] = [
-    {
-      admissionDate: "22/10/2023",
-      email: "luiz@caju.com.br",
-      employeeName: "Luiz Filho",
-      status: "APROVED",
-      cpf: "56642105087",
-      id: "3",
-    },
-  ];
+import { useRegistrationsHook } from "./hooks/registrationsHook";
+import { SearchBar } from "./components/Searchbar";
+import { Columns } from "./components/Columns";
+import * as S from "./styles";
 
-  console.log("[OFF] 1", { registrations });
+const DashboardPage = () => {
+  const { data, isLoading, error } = useRegistrationsHook();
+  const registrations: TRegistrationsData[] | undefined = data;
+
+  if (isLoading) return <p data-testid="loading-container">Loading</p>;
+
+  if (error && error.message)
+    return <p data-testid="error-container">{error.message}</p>;
 
   return (
     <S.Container>
       <SearchBar />
-      <Collumns registrations={registrations} />
+      <Columns registrations={registrations} />
     </S.Container>
   );
 };
+
 export default DashboardPage;
