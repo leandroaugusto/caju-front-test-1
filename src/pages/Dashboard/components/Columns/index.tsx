@@ -12,22 +12,24 @@ export const Columns = ({ registrations }: IColumnsProps) => {
       {allColumns.map((column) => {
         return (
           <S.Column $status={toLower(column.status)} key={column.title}>
-            <>
-              <S.TitleColumn $status={toLower(column.status)}>
-                {column.title}
-              </S.TitleColumn>
-              <S.CollumContent>
-                {registrations?.map(
-                  (registration) =>
-                    registration.status === column.status && (
-                      <RegistrationCard
-                        data={registration}
-                        key={registration.id}
-                      />
-                    )
-                )}
-              </S.CollumContent>
-            </>
+            <S.TitleColumn
+              data-testid="column-title"
+              $status={toLower(column.status)}
+            >
+              {column.title}
+            </S.TitleColumn>
+
+            <S.CollumContent data-testid="column-content">
+              {registrations?.map(
+                (registration) =>
+                  registration.status === column.status && (
+                    <RegistrationCard
+                      data={registration}
+                      key={registration.id}
+                    />
+                  )
+              )}
+            </S.CollumContent>
           </S.Column>
         );
       })}
