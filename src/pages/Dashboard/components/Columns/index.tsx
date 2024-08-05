@@ -6,22 +6,23 @@ import { IColumnsProps } from "./types";
 export const Columns = ({ registrations }: IColumnsProps) => {
   return (
     <S.Container data-testid="columns-container">
-      {allColumns.map((collum) => {
+      {allColumns.map((column) => {
         return (
-          <S.Column status={collum.status} key={collum.title}>
+          <S.Column status={column.status} key={column.title}>
             <>
-              <S.TitleColumn status={collum.status}>
-                {collum.title}
+              <S.TitleColumn status={column.status}>
+                {column.title}
               </S.TitleColumn>
               <S.CollumContent>
-                {registrations?.map((registration) => {
-                  return (
-                    <RegistrationCard
-                      data={registration}
-                      key={registration.id}
-                    />
-                  );
-                })}
+                {registrations?.map(
+                  (registration) =>
+                    registration.status === column.status && (
+                      <RegistrationCard
+                        data={registration}
+                        key={registration.id}
+                      />
+                    )
+                )}
               </S.CollumContent>
             </>
           </S.Column>

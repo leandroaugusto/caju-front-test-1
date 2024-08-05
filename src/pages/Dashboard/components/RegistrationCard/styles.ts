@@ -24,10 +24,10 @@ export const IconAndText = styled.div`
 
 export const Actions = styled.div`
   margin-top: 8px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  gap: 4px;
+  grid-column-gap: 10px;
 
   svg {
     cursor: pointer;
