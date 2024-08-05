@@ -1,16 +1,19 @@
-import * as S from "./styles";
+import { toLower } from "~/utils/toLower";
+
 import RegistrationCard from "../RegistrationCard";
-import { allColumns } from "./constants";
+
+import * as S from "./styles";
 import { IColumnsProps } from "./types";
+import { allColumns } from "./constants";
 
 export const Columns = ({ registrations }: IColumnsProps) => {
   return (
     <S.Container data-testid="columns-container">
       {allColumns.map((column) => {
         return (
-          <S.Column status={column.status} key={column.title}>
+          <S.Column $status={toLower(column.status)} key={column.title}>
             <>
-              <S.TitleColumn status={column.status}>
+              <S.TitleColumn $status={toLower(column.status)}>
                 {column.title}
               </S.TitleColumn>
               <S.CollumContent>

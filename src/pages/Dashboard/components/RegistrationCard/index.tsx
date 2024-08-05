@@ -31,11 +31,11 @@ const RegistrationCard = ({ data }: IRegistrationCardProps) => {
       <S.Actions>
         {data.status === ERegistrationsStatus.REVIEW ? (
           <>
-            <ButtonSmall bgcolor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
-            <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
+            <ButtonSmall $buttonTheme="reproved">Reprovar</ButtonSmall>
+            <ButtonSmall $buttonTheme="approved">Aprovar</ButtonSmall>
           </>
         ) : (
-          <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
+          <ButtonSmall $buttonTheme="review">Revisar novamente</ButtonSmall>
         )}
         <HiOutlineTrash />
       </S.Actions>

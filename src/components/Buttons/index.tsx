@@ -17,7 +17,7 @@ const Button = styled.button`
 `;
 
 export const ButtonSmall = styled.button<{
-  bgcolor?: string;
+  $buttonTheme: "approved" | "reproved" | "review";
   color?: string;
 }>`
   font-size: 12px;
@@ -25,10 +25,10 @@ export const ButtonSmall = styled.button<{
   border-radius: 4px;
   border: none;
   padding: 4px 16px;
-  background-color: ${(props) => props.bgcolor ?? 'none'};
+  background-color: ${({ $buttonTheme, theme }) =>
+    theme.colors[$buttonTheme].button ?? "none"};
   color: ${(props) => props.color ?? "#000"};
   cursor: pointer;
 `;
-
 
 export default Button;
