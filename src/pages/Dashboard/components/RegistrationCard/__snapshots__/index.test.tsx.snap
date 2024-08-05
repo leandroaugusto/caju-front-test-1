@@ -4,6 +4,7 @@ exports[`RegistrationCard Should show RegistrationCard component 1`] = `
 <div>
   <div
     class="sc-elDIKY gPXLze"
+    data-testid="card-APPROVED-status"
   >
     <div
       class="sc-fQpRED hGgTXR"
@@ -81,20 +82,8 @@ exports[`RegistrationCard Should show RegistrationCard component 1`] = `
       </span>
     </div>
     <div
-      class="sc-dsLQwm kTjQSc"
+      class="sc-dsLQwm jxMBlB"
     >
-      <button
-        bgcolor="rgb(255, 145, 154)"
-        class="sc-gJhJTp gnLBcj"
-      >
-        Reprovar
-      </button>
-      <button
-        bgcolor="rgb(155, 229, 155)"
-        class="sc-gJhJTp hJBfuk"
-      >
-        Aprovar
-      </button>
       <button
         bgcolor="#ff8858"
         class="sc-gJhJTp buQVwd"

@@ -6,3 +6,9 @@ export type TRegistrationsData = {
   cpf?: string,
   id?: string
 }
+
+export enum ERegistrationsStatus {
+  REVIEW = "REVIEW",
+  APPROVED = "APPROVED",
+  REPROVED = "REPROVED",
+}

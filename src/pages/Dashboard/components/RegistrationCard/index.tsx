@@ -6,6 +6,7 @@ import {
 } from "react-icons/hi";
 
 import { ButtonSmall } from "~/components/Buttons";
+import { ERegistrationsStatus } from "~/types/registrations.types";
 
 import * as S from "./styles";
 import { IRegistrationCardProps } from "./types";
@@ -28,7 +29,7 @@ const RegistrationCard = ({ data }: IRegistrationCardProps) => {
         <span data-testid="employee-admission-date">{admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        {data.status === "REVIEW" ? (
+        {data.status === ERegistrationsStatus.REVIEW ? (
           <>
             <ButtonSmall bgcolor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
             <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
