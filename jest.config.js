@@ -15,6 +15,7 @@ export default {
   moduleNameMapper: {
     "^~/(.*)$": "<rootDir>/src/$1",
   },
+  moduleDirectories: ["node_modules", "src/test-utils"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   testPathIgnorePatterns: ["/node_modules/"],
 };

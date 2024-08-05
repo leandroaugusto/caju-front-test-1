@@ -1,29 +1,35 @@
+import { toLower } from "~/utils/toLower";
+
+import { RegistrationCard } from "../RegistrationCard";
+
 import * as S from "./styles";
-import RegistrationCard from "../RegistrationCard";
-import { allColumns } from "./constants";
 import { IColumnsProps } from "./types";
+import { allColumns } from "./constants";
 
 export const Columns = ({ registrations }: IColumnsProps) => {
   return (
     <S.Container data-testid="columns-container">
-      {allColumns.map((collum) => {
+      {allColumns.map((column) => {
         return (
-          <S.Column status={collum.status} key={collum.title}>
-            <>
-              <S.TitleColumn status={collum.status}>
-                {collum.title}
-              </S.TitleColumn>
-              <S.CollumContent>
-                {registrations?.map((registration) => {
-                  return (
+          <S.Column $status={toLower(column.status)} key={column.title}>
+            <S.TitleColumn
+              data-testid="column-title"
+              $status={toLower(column.status)}
+            >
+              {column.title}
+            </S.TitleColumn>
+
+            <S.CollumContent data-testid="column-content">
+              {registrations?.map(
+                (registration) =>
+                  registration.status === column.status && (
                     <RegistrationCard
                       data={registration}
                       key={registration.id}
                     />
-                  );
-                })}
-              </S.CollumContent>
-            </>
+                  )
+              )}
+            </S.CollumContent>
           </S.Column>
         );
       })}

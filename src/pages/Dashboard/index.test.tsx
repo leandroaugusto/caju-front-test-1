@@ -1,8 +1,12 @@
-import { render, screen, waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
+
+import { customRender, screen, waitFor } from "~/test-utils";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { TRegistrationsData } from "~/types/registrations.types";
+import {
+  ERegistrationsStatus,
+  TRegistrationsData,
+} from "~/types/registrations.types";
 import { useRegistrationsHook } from "./hooks/registrationsHook";
 
 import DashboardPage from ".";
@@ -12,7 +16,7 @@ const mockRegistrations: TRegistrationsData[] = [
     admissionDate: "22/10/2023",
     email: "luiz@caju.com.br",
     employeeName: "Luiz Filho",
-    status: "APROVED",
+    status: ERegistrationsStatus.APPROVED,
     cpf: "56642105087",
     id: "3",
   },
@@ -20,7 +24,7 @@ const mockRegistrations: TRegistrationsData[] = [
     admissionDate: "22/10/2023",
     email: "luiz@caju.com",
     employeeName: "Luiz Neto",
-    status: "REVIEW",
+    status: ERegistrationsStatus.REVIEW,
     cpf: "56642105088",
     id: "2",
   },
@@ -69,7 +73,7 @@ describe("DashboardPage", () => {
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    const { container } = render(<DashboardPage />);
+    const { container } = customRender(<DashboardPage />);
 
     const mockSearchBarContainer = screen.getByTestId(
       "mock-search-bar-container"
@@ -91,7 +95,7 @@ describe("DashboardPage", () => {
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
     await waitFor(() => expect(result.current.isLoading).toBe(true));
 
-    render(<DashboardPage />);
+    customRender(<DashboardPage />);
 
     const mockLoadingContainer = screen.getByTestId("loading-container");
 
@@ -109,7 +113,7 @@ describe("DashboardPage", () => {
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
     await waitFor(() => expect(result.current.error).not.toBeNull());
 
-    render(<DashboardPage />);
+    customRender(<DashboardPage />);
 
     const mockErrorContainer = screen.getByTestId("error-container");
 

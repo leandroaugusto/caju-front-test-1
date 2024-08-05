@@ -24,5 +24,3 @@ export const SearchBar = () => {
     </S.Container>
   );
 };
-
-// export default SearchBar;

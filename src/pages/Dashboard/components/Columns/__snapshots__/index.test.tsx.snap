@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Columns Should render Columns component 1`] = `
+<div>
+  <div
+    class="sc-braxZu iMmUiR"
+    data-testid="columns-container"
+  >
+    <div
+      class="sc-gJhJTp HbPSK"
+    >
+      <h3
+        class="sc-elDIKY eGvgBu"
+        data-testid="column-title"
+      >
+        Pronto para revisar
+      </h3>
+      <div
+        class="sc-fQpRED klzfkN"
+        data-testid="column-content"
+      >
+        <div
+          data-testid="mock-card-container"
+        >
+          REVIEW
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-gJhJTp fUdUew"
+    >
+      <h3
+        class="sc-elDIKY duOeG"
+        data-testid="column-title"
+      >
+        Aprovado
+      </h3>
+      <div
+        class="sc-fQpRED klzfkN"
+        data-testid="column-content"
+      >
+        <div
+          data-testid="mock-card-container"
+        >
+          APPROVED
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-gJhJTp kmWUQj"
+    >
+      <h3
+        class="sc-elDIKY cLMMBy"
+        data-testid="column-title"
+      >
+        Reprovado
+      </h3>
+      <div
+        class="sc-fQpRED klzfkN"
+        data-testid="column-content"
+      />
+    </div>
+  </div>
+</div>
+`;
