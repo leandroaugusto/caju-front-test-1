@@ -1,5 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
+
+import { customRender, screen, waitFor } from "~/test-utils";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import {
@@ -72,7 +73,7 @@ describe("DashboardPage", () => {
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    const { container } = render(<DashboardPage />);
+    const { container } = customRender(<DashboardPage />);
 
     const mockSearchBarContainer = screen.getByTestId(
       "mock-search-bar-container"
@@ -94,7 +95,7 @@ describe("DashboardPage", () => {
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
     await waitFor(() => expect(result.current.isLoading).toBe(true));
 
-    render(<DashboardPage />);
+    customRender(<DashboardPage />);
 
     const mockLoadingContainer = screen.getByTestId("loading-container");
 
@@ -112,7 +113,7 @@ describe("DashboardPage", () => {
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
     await waitFor(() => expect(result.current.error).not.toBeNull());
 
-    render(<DashboardPage />);
+    customRender(<DashboardPage />);
 
     const mockErrorContainer = screen.getByTestId("error-container");
 

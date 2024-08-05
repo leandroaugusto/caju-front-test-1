@@ -7,15 +7,16 @@ import {
 
 import { ButtonSmall } from "~/components/Buttons";
 import { ERegistrationsStatus } from "~/types/registrations.types";
+import { toLower } from "~/utils/toLower";
 
 import * as S from "./styles";
 import { IRegistrationCardProps } from "./types";
 
-const RegistrationCard = ({ data }: IRegistrationCardProps) => {
+export const RegistrationCard = ({ data }: IRegistrationCardProps) => {
   const { employeeName, email, admissionDate } = data;
 
   return (
-    <S.Card data-testid={`card-${data.status}-status`}>
+    <S.Card data-testid={`card-${toLower(data.status as string)}-status`}>
       <S.IconAndText>
         <HiOutlineUser />
         <h3 data-testid="employee-name">{employeeName}</h3>
@@ -31,16 +32,20 @@ const RegistrationCard = ({ data }: IRegistrationCardProps) => {
       <S.Actions>
         {data.status === ERegistrationsStatus.REVIEW ? (
           <>
-            <ButtonSmall $buttonTheme="reproved">Reprovar</ButtonSmall>
-            <ButtonSmall $buttonTheme="approved">Aprovar</ButtonSmall>
+            <ButtonSmall data-testid="reproved-button" $buttonTheme="reproved">
+              Reprovar
+            </ButtonSmall>
+            <ButtonSmall data-testid="approved-button" $buttonTheme="approved">
+              Aprovar
+            </ButtonSmall>
           </>
         ) : (
-          <ButtonSmall $buttonTheme="review">Revisar novamente</ButtonSmall>
+          <ButtonSmall data-testid="review-button" $buttonTheme="review">
+            Revisar novamente
+          </ButtonSmall>
         )}
         <HiOutlineTrash />
       </S.Actions>
     </S.Card>
   );
 };
-
-export default RegistrationCard;

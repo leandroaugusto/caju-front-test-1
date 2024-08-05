@@ -1,6 +1,6 @@
 import { toLower } from "~/utils/toLower";
 
-import RegistrationCard from "../RegistrationCard";
+import { RegistrationCard } from "../RegistrationCard";
 
 import * as S from "./styles";
 import { IColumnsProps } from "./types";

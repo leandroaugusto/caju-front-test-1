@@ -27,7 +27,7 @@ export const ButtonSmall = styled.button<{
   padding: 4px 16px;
   background-color: ${({ $buttonTheme, theme }) =>
     theme.colors[$buttonTheme].button ?? "none"};
-  color: ${(props) => props.color ?? "#000"};
+  color: ${({ color }) => color ?? "#000"};
   cursor: pointer;
 `;
 
