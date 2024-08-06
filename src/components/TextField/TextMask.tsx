@@ -4,14 +4,14 @@ import { ITextMaskFieldProps } from "./types";
 import { TextField } from ".";
 
 export const TextMaskField = ({
-  value,
+  id,
   mask,
+  value,
+  register,
   onChange,
   ...rest
-}: ITextMaskFieldProps) => {
-  return (
-    <InputMask mask={mask} value={value} onChange={onChange}>
-      <TextField type="text" {...rest} />
-    </InputMask>
-  );
-};
+}: ITextMaskFieldProps) => (
+  <InputMask mask={mask} value={value} onChange={onChange} {...rest}>
+    <TextField id={id} register={register} />
+  </InputMask>
+);

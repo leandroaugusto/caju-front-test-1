@@ -8,15 +8,15 @@ export const Header = styled.header`
     rgba(232, 5, 55, 1) 53%
   );
   width: 100%;
-  height: 64px;
+  height: 4rem;
   position: fixed;
   top: 0;
   display: flex;
   align-items: center;
-  padding:0px 24px;
+  padding: 0 1.5rem;
 
   h1 {
     color: #fff;
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 `;

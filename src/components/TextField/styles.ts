@@ -1,21 +1,23 @@
 import styled from "styled-components";
 
+import { pxToRem } from "~/utils/pxToRem";
+
 export const Input = styled.input`
-  padding: 0 8px;
+  padding: 0 0.5rem;
   vertical-align: middle;
-  border-radius: 2px;
+  border-radius: ${pxToRem(2)};
   width: 100%;
-  min-height: 36px;
+  min-height: ${pxToRem(36)};
   background-color: #ffffff;
-  border: 1px solid rgba(36, 28, 21, 0.3);
+  border: ${pxToRem(1)} solid rgba(36, 28, 21, 0.3);
   transition: all 0.2s ease-in-out 0s;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 1rem;
+  line-height: ${pxToRem(18)};
   font-weight: normal;
-  border-radius: 8px;
+  border-radius: 0.25rem;
   :focus {
     outline: none;
-    border: 1px solid #007c89;
-    box-shadow: inset 0 0 0 1px #007c89;
+    border: ${pxToRem(1)} solid #007c89;
+    box-shadow: inset 0 0 0 ${pxToRem(1)} #007c89;
   }
 `;

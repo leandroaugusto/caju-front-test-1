@@ -18,15 +18,18 @@
     "lint-staged": "lint-staged"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@tanstack/react-query": "^5.51.18",
     "axios": "^1.7.2",
     "json-server": "^1.0.0-beta.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.52.2",
     "react-icons": "^5.2.1",
-    "react-input-mask": "3.0.0-alpha.2",
+    "react-input-mask": "^3.0.0-alpha.2",
     "react-router-dom": "5.1.2",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
