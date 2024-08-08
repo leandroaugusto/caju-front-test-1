@@ -8,6 +8,10 @@ export const Fieldset = styled.fieldset`
   margin: 0;
 `;
 
+export const Label = styled.label<{ $error?: boolean }>`
+  color: ${props => (props.$error ? "#ff0000" : "initial")};
+`;
+
 export const Input = styled.input<{ $error?: boolean }>`
   padding: 0 0.5rem;
   vertical-align: middle;

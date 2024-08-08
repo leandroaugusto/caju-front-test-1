@@ -23,7 +23,9 @@ export const TextField = forwardRef<
   ) => {
     return (
       <S.Fieldset>
-        <label htmlFor={id}>{label}</label>
+        <S.Label $error={!!error} htmlFor={id}>
+          {label}
+        </S.Label>
         <S.Input
           {...rest}
           name={id}
