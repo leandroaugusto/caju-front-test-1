@@ -1,17 +1,8 @@
-import InputMask from "react-input-mask";
+import { withMask } from "use-mask-input";
 
-import { ITextMaskFieldProps } from "./types";
+import { ITextFieldProps } from "./types";
 import { TextField } from ".";
 
-export const TextMaskField = ({
-  id,
-  mask,
-  value,
-  register,
-  onChange,
-  ...rest
-}: ITextMaskFieldProps) => (
-  <InputMask mask={mask} value={value} onChange={onChange} {...rest}>
-    <TextField id={id} register={register} />
-  </InputMask>
-);
+export const TextCpfMaskField = ({ ...props }: ITextFieldProps) => {
+  return <TextField ref={withMask("999.999.999-99")} {...props} />;
+};

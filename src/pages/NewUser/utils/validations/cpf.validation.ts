@@ -1,4 +1,9 @@
 export function cpfValidator(cpf: string): boolean {
+  let isValid = false;
+
+  // Remove all non-digit characters
+  cpf = cpf.replace(/[^\d]+/g, '');
+
   // validate cpf length
   if (cpf.length !== 11) return false;
 
@@ -36,5 +41,8 @@ export function cpfValidator(cpf: string): boolean {
 
   if (rest !== parseInt(cpf.substring(10, 11))) return false;
 
-  return true;
+  isValid = true;
+  console.log("[OFF] Valid CPF", isValid)
+
+  return isValid;
 }
