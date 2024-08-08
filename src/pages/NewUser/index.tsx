@@ -16,6 +16,12 @@ import * as S from "./styles";
 
 const NewUserPage = () => {
   const {
+    registrationsState: registrations,
+    isLoading,
+    error,
+  } = useContext(RegistrationsContext);
+
+  const {
     register,
     handleSubmit,
     formState: { errors },
@@ -23,24 +29,16 @@ const NewUserPage = () => {
 
   const registerWithMask = useHookFormMask(register);
 
-  const {
-    registrationsState: registrations,
-    isLoading,
-    error,
-  } = useContext(RegistrationsContext);
-
-  console.log("[OFF] registrations", registrations, isLoading, error);
-
   const history = useHistory();
 
-  const goToHomePage = () => {
-    history.push(routes.dashboard);
-  };
+  const goToHomePage = () => history.push(routes.dashboard);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const dateFormat = formatDate(data.admissionDate);
     console.log("onSubmit", { data, dateFormat });
   };
+
+  console.log("[OFF] registrations", registrations, isLoading, error);
 
   return (
     <S.Container>
