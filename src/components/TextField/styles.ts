@@ -8,14 +8,14 @@ export const Fieldset = styled.fieldset`
   margin: 0;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ $error?: boolean }>`
   padding: 0 0.5rem;
   vertical-align: middle;
   border-radius: ${pxToRem(2)};
   width: 100%;
   min-height: ${pxToRem(36)};
   background-color: #ffffff;
-  border: ${pxToRem(1)} solid rgba(36, 28, 21, 0.3);
+  border: ${pxToRem(1)} solid ${props => (props.$error ? "#ff0000" : "#241c154d")};
   transition: all 0.2s ease-in-out 0s;
   font-size: 1rem;
   line-height: ${pxToRem(18)};
@@ -27,3 +27,8 @@ export const Input = styled.input`
     box-shadow: inset 0 0 0 ${pxToRem(1)} #007c89;
   }
 `;
+
+export const TagError = styled.span`
+  font-size: ${pxToRem(12)};
+  color: #ff0000;
+`

@@ -22,14 +22,13 @@ export const Card = styled.div`
   padding: 3rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
  
   ${IconButtonStyled} {
-    margin-bottom: 0.5rem;
     align-items: flex-start;
   }
 
   ${Button}{
-    align-self: flex-end;
+    justify-self: end;
   }
 `;

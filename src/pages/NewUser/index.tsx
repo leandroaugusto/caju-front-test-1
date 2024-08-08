@@ -10,6 +10,7 @@ import { IconButton } from "~/components/Buttons/IconButton";
 
 import routes from "~/router/routes";
 
+import { formatDate } from "./utils/formatters";
 import { schema } from "./schema.validator";
 import * as S from "./styles";
 
@@ -28,7 +29,8 @@ const NewUserPage = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("onSubmit", { data });
+    const dateFormat = formatDate(data.admissionDate);
+    console.log("onSubmit", { data, dateFormat });
   };
 
   return (

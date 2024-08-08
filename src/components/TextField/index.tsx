@@ -27,9 +27,10 @@ export const TextField = forwardRef<
           name={id}
           type={type}
           ref={ref}
+          $error={!!error}
           placeholder={placeholder || label}
         />
-        <span style={{ fontSize: 12, color: "red" }}>{error}</span>
+        <S.TagError>{error}</S.TagError>
       </S.Fieldset>
     );
   }
