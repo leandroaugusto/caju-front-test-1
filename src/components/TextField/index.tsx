@@ -1,37 +1,36 @@
 import { forwardRef } from "react";
-import { Input } from "./styles";
+import { UseFormRegister } from "react-hook-form";
+
+import * as S from "./styles";
 import { ITextFieldProps } from "./types";
 
-export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
+export const TextField = forwardRef<
+  HTMLInputElement,
+  ITextFieldProps & ReturnType<UseFormRegister<any>>
+>(
   (
     {
       id,
       label = "Campo de texto",
       type = "text",
       placeholder,
-      register,
-      registerWithMask,
-      required = false,
       error,
       ...rest
     },
     ref
   ) => {
     return (
-      <div>
+      <S.Fieldset>
         <label htmlFor={id}>{label}</label>
-        <Input
-          {...(register && register(id, { required }))}
-          {...(registerWithMask &&
-            registerWithMask(id, "999.999.999-99", { required }))}
+        <S.Input
+          {...rest}
           name={id}
           type={type}
           ref={ref}
           placeholder={placeholder || label}
-          {...rest}
         />
         <span style={{ fontSize: 12, color: "red" }}>{error}</span>
-      </div>
+      </S.Fieldset>
     );
   }
 );

@@ -2,6 +2,12 @@ import styled from "styled-components";
 
 import { pxToRem } from "~/utils/pxToRem";
 
+export const Fieldset = styled.fieldset`
+  border: 0;
+  padding: 0;
+  margin: 0;
+`;
+
 export const Input = styled.input`
   padding: 0 0.5rem;
   vertical-align: middle;

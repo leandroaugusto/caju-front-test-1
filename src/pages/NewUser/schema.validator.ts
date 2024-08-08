@@ -16,19 +16,20 @@ export const schema = yup
       .required("Email é obrigatório"),
     cpf: yup
       .string()
-      .test("is-valid-cpf", "CPF inválido", (value) => {
-        console.log("[OFF] CPF", value);
-        return cpfValidator(value as string)
-      })
+      .test("is-valid-cpf", "CPF inválido", (value) => cpfValidator(value as string))
       .transform((value) => value.replace(/\D/g, '')) // Remove all non-digits
       .required("CPF é obrigatório"),
     admissionDate: yup.string()
       .required("A data é obrigatória")
-      .test("is-valid-date", "A data não pode ser anterior a 01/01/1970 ou posterior à data atual", (value) => dateValidator(value))
+      .test(
+        "is-valid-date",
+        "A data não pode ser anterior a 01/01/1970 ou posterior à data atual",
+        (value) => dateValidator(value)
+      )
       .transform((_, originalValue) => {
         const parsedDate = parse(originalValue, "yyyy-mm-dd", new Date()); // Parse the date into a new Date object
         return isValid(parsedDate) ? format(parsedDate, "dd/mm/yyyy") : originalValue;
       })
-      .typeError("O campo de data é obrigatório e deve ser uma data válida")
+      .typeError("O campo de data é obrigatório e deve conter uma data válida")
   })
   .required();

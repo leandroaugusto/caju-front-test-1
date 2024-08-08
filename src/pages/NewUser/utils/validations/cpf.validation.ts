@@ -42,7 +42,6 @@ export function cpfValidator(cpf: string): boolean {
   if (rest !== parseInt(cpf.substring(10, 11))) return false;
 
   isValid = true;
-  console.log("[OFF] Valid CPF", isValid)
 
   return isValid;
 }

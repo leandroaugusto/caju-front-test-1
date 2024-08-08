@@ -42,8 +42,7 @@ const NewUserPage = () => {
           <TextField
             id="name"
             label="Nome"
-            register={register}
-            required
+            {...register("name", { required: true })}
             error={errors.name?.message as string}
           />
 
@@ -51,8 +50,7 @@ const NewUserPage = () => {
             id="email"
             label="Email"
             type="email"
-            register={register}
-            required
+            {...register("email", { required: true })}
             error={errors.email?.message as string}
           />
 
@@ -60,32 +58,17 @@ const NewUserPage = () => {
             id="cpf"
             type="tel"
             label="CPF"
-            registerWithMask={registerWithMask}
-            required
+            {...registerWithMask("cpf", "999.999.999-99", {
+              required: true,
+            })}
             error={errors.cpf?.message as string}
           />
-          {/* <Controller
-            name="cpf"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                id="cpf"
-                type="tel"
-                label="CPF"
-                required
-                error={errors.cpf?.message as string}
-                {...field}
-                ref={withMask("999.999.999-99")}
-              />
-            )}
-          /> */}
 
           <TextField
             id="admissionDate"
             type="date"
             label="Data de admissão"
-            register={register}
-            required
+            {...register("admissionDate", { required: true })}
             error={errors.admissionDate?.message as string}
           />
 
