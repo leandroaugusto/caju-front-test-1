@@ -1,29 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DashboardPage Should render error message when error is available 1`] = `
-<div>
-  <p
-    data-testid="error-container"
-  >
-    Error message
-  </p>
-</div>
-`;
-
-exports[`DashboardPage Should render loading state when data is not available 1`] = `
-<div>
-  <p
-    data-testid="loading"
-  >
-    Loading
-  </p>
-</div>
-`;
-
 exports[`DashboardPage Should show DashboardPage page 1`] = `
 <div>
   <div
-    class="sc-braxZu eCqxwy"
+    class="sc-braxZu cCQSSo"
   >
     <div
       data-testid="mock-search-bar-container"

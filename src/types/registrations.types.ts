@@ -7,6 +7,13 @@ export type TRegistrationsData = {
   id?: string
 }
 
+export type TFieldValues = {
+  name: string;
+  email: string;
+  cpf: string;
+  admissionDate: string;
+}
+
 export enum ERegistrationsStatus {
   REVIEW = "REVIEW",
   APPROVED = "APPROVED",

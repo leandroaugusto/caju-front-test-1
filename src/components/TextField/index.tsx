@@ -1,12 +1,14 @@
 import { forwardRef } from "react";
 import { UseFormRegister } from "react-hook-form";
 
+import { TFieldValues } from "~/types/registrations.types";
+
 import * as S from "./styles";
 import { ITextFieldProps } from "./types";
 
 export const TextField = forwardRef<
   HTMLInputElement,
-  ITextFieldProps & ReturnType<UseFormRegister<any>>
+  ITextFieldProps & ReturnType<UseFormRegister<TFieldValues>>
 >(
   (
     {

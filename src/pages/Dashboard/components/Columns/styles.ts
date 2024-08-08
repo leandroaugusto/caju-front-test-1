@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin-top: 1.5rem;
 `;
 
-export const Column = styled.div<{ $status: any }>`
+export const Column = styled.div<{ $status: string }>`
   height: auto;
   background-color: ${({ $status, theme }) =>
     theme.colors[$status].background};
@@ -17,7 +17,7 @@ export const Column = styled.div<{ $status: any }>`
   max-height: 80vh;
 `;
 
-export const TitleColumn = styled.h3<{ $status: any }>`
+export const TitleColumn = styled.h3<{ $status: string }>`
   margin: 0;
   color: ${({ $status, theme }) => theme.colors[$status].title};
   margin: 1.5rem;

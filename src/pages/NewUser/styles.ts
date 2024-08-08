@@ -11,11 +11,6 @@ export const Container = styled.div`
   margin-top: 1rem;
 `;
 
-export const Form = styled.form`
-  display: grid;
-  grid-row-gap: 1rem;
-`;
-
 export const Card = styled.div`
   border: ${pxToRem(2)} solid #f0f0f0;
   width: 500px;

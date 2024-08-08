@@ -1,13 +1,17 @@
-import { TRegistrationsData } from "~/types/registrations.types";
+import { useContext } from "react";
 
-import { useRegistrationsHook } from "./hooks/registrationsHook";
+import { RegistrationsContext } from "~/contexts/registrationsContext";
+
 import { SearchBar } from "./components/Searchbar";
 import { Columns } from "./components/Columns";
 import * as S from "./styles";
 
 const DashboardPage = () => {
-  const { data, isLoading, error } = useRegistrationsHook();
-  const registrations: TRegistrationsData[] | undefined = data;
+  const {
+    registrationsState: registrations,
+    isLoading,
+    error,
+  } = useContext(RegistrationsContext);
 
   if (isLoading) return <p data-testid="loading-container">Loading</p>;
 
