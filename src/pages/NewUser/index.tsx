@@ -15,11 +15,8 @@ import { schema } from "./utils/validations";
 import * as S from "./styles";
 
 const NewUserPage = () => {
-  const {
-    registrationsState: registrations,
-    isLoading,
-    error,
-  } = useContext(RegistrationsContext);
+  const { registrationsState: registrations } =
+    useContext(RegistrationsContext);
 
   const {
     register,
@@ -35,10 +32,12 @@ const NewUserPage = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const dateFormat = formatDate(data.admissionDate);
-    console.log("onSubmit", { data, dateFormat });
-  };
+    const isCpfRegistered = registrations.some(
+      (registration) => registration.cpf === data.cpf
+    );
 
-  console.log("[OFF] registrations", registrations, isLoading, error);
+    console.log("onSubmit", { data, dateFormat, isCpfRegistered });
+  };
 
   return (
     <S.Container>
