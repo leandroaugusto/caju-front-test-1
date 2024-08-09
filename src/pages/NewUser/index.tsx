@@ -18,6 +18,7 @@ import { IconButton } from "~/components/Buttons/IconButton";
 import { Form } from "./components/Form";
 import { SnackBar } from "~/components/Snackbar";
 import { Modal } from "~/components/Modal";
+import { Loading } from "~/components/Loading";
 
 import { formatDate } from "./utils/formatters";
 import { schema } from "./utils/validations";
@@ -27,6 +28,7 @@ const NewUserPage = () => {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const payload = useRef<Partial<TRegistrationsData>>({});
 
@@ -78,17 +80,23 @@ const NewUserPage = () => {
   const saveUser = async () => {
     if (!Object.hasOwn(payload.current, "id")) return;
 
+    setLoading(true);
+
     try {
       await mutation.mutateAsync(payload.current);
       goToHomePage({ state: "registered" });
     } catch (error) {
       setOpenModal(false);
+      setLoading(false);
+
       if (error instanceof Error) {
         setErrorMessage(error.message);
         setOpenSnackbar(true);
       }
     }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <S.Container>
