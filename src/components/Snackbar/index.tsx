@@ -34,9 +34,18 @@ export const SnackBar = ({
   }, [startAutoHide]);
 
   return (
-    <S.Container $visible={visible} aria-hidden={!visible}>
+    <S.Container
+      $visible={visible}
+      role="alert"
+      aria-live="polite"
+      aria-hidden={!visible}
+    >
       <S.Text>{message}</S.Text>
-      <ButtonSmall $buttonTheme="approved" onClick={handleClose}>
+      <ButtonSmall
+        aria-label="close"
+        $buttonTheme="approved"
+        onClick={handleClose}
+      >
         OK
       </ButtonSmall>
     </S.Container>

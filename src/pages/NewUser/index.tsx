@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
@@ -17,6 +17,7 @@ import routes from "~/router/routes";
 import { IconButton } from "~/components/Buttons/IconButton";
 import { Form } from "./components/Form";
 import { SnackBar } from "~/components/Snackbar";
+import { Modal } from "~/components/Modal";
 
 import { formatDate } from "./utils/formatters";
 import { schema } from "./utils/validations";
@@ -24,7 +25,10 @@ import * as S from "./styles";
 
 const NewUserPage = () => {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const payload = useRef<Partial<TRegistrationsData>>({});
 
   const { registrationsState: registrations } =
     useContext(RegistrationsContext);
@@ -54,11 +58,12 @@ const NewUserPage = () => {
         Number(curr.id) > acc ? Number(curr.id) : acc,
       0
     );
+    const id: string = (getHighestId + 1).toString();
 
-    const payload: Partial<TRegistrationsData> = {
+    payload.current = {
       ...data,
+      id,
       admissionDate: dateFormat,
-      id: (getHighestId + 1).toString(),
       status: ERegistrationsStatus.REVIEW,
     };
 
@@ -66,13 +71,21 @@ const NewUserPage = () => {
       setErrorMessage("CPF de usuário já cadastrado");
       setOpenSnackbar(true);
     } else {
-      try {
-        await mutation.mutateAsync(payload);
-        goToHomePage({ state: "registered" });
-      } catch (error) {
-        if (error instanceof Error) {
-          setErrorMessage(error.message);
-        }
+      setOpenModal(true);
+    }
+  };
+
+  const saveUser = async () => {
+    if (!Object.hasOwn(payload.current, "id")) return;
+
+    try {
+      await mutation.mutateAsync(payload.current);
+      goToHomePage({ state: "registered" });
+    } catch (error) {
+      setOpenModal(false);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+        setOpenSnackbar(true);
       }
     }
   };
@@ -95,6 +108,13 @@ const NewUserPage = () => {
           open={openSnackbar}
           onClose={() => setOpenSnackbar(false)}
           message={errorMessage}
+        />
+
+        <Modal
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+          message="Registrar novo usuário?"
+          confirm={saveUser}
         />
       </S.Card>
     </S.Container>

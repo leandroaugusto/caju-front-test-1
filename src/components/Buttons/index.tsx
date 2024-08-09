@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { pxToRem } from "~/utils/pxToRem";
 
 const Button = styled.button`
-  outline: none;
+  /* outline: none; */
   display: flex;
   align-items: center;
   border: none;
@@ -23,7 +23,7 @@ export const ButtonSmall = styled.button<{
   color?: string;
 }>`
   font-size: ${pxToRem(12)};
-  outline: none;
+  /* outline: none; */
   border-radius: 0.25rem;
   border: none;
   padding: 0.25rem 1rem;
