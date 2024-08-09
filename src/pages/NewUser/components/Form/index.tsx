@@ -12,10 +12,10 @@ export const Form = ({
 }: IFormProps) => (
   <S.Form onSubmit={onSubmit}>
     <TextField
-      id="name"
+      id="employeeName"
       label="Nome"
-      {...register("name", { required: true })}
-      error={errors.name?.message as string}
+      {...register("employeeName", { required: true })}
+      error={errors.employeeName?.message as string}
     />
 
     <TextField

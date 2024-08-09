@@ -18,7 +18,7 @@ export const TextField = forwardRef<
       placeholder,
       error,
       ...rest
-    },
+    }: ITextFieldProps,
     ref
   ) => {
     return (
@@ -26,6 +26,7 @@ export const TextField = forwardRef<
         <S.Label $error={!!error} htmlFor={id}>
           {label}
         </S.Label>
+
         <S.Input
           {...rest}
           name={id}
@@ -34,6 +35,7 @@ export const TextField = forwardRef<
           $error={!!error}
           placeholder={placeholder || label}
         />
+
         <S.TagError>{error}</S.TagError>
       </S.Fieldset>
     );

@@ -6,15 +6,15 @@ module.exports = {
     es2020: true,
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint"],
   extends: [
     "eslint:recommended",
+    "eslint-config-prettier",
     "plugin:react/recommended",
     "plugin:import/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "eslint-config-prettier",
     "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
   ignorePatterns: ["node_modules/*", ".eslintcache"],
   settings: {

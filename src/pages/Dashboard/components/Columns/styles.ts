@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Column = styled.div<{ $status: string }>`
   height: auto;
   background-color: ${({ $status, theme }) =>
-    theme.colors[$status].background};
+    theme.colors.columns[$status].background};
   border-radius: 2rem;
   min-height: 80vh;
   max-height: 80vh;
@@ -19,7 +19,7 @@ export const Column = styled.div<{ $status: string }>`
 
 export const TitleColumn = styled.h3<{ $status: string }>`
   margin: 0;
-  color: ${({ $status, theme }) => theme.colors[$status].title};
+  color: ${({ $status, theme }) => theme.colors.columns[$status].title};
   margin: 1.5rem;
 `;
 

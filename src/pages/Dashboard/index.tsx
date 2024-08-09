@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { RegistrationsContext } from "~/contexts/registrationsContext";
+import { RegistrationsContext } from "~/contexts/registrations.context";
 
 import { SearchBar } from "./components/Searchbar";
 import { Columns } from "./components/Columns";

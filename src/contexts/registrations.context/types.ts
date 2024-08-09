@@ -8,6 +8,6 @@ export type TRegistrationsContextValue = {
   error: Error | null,
 }
 
-export interface IRegistrationsContextProps {
+export interface IRegistrationsProviderProps {
   children: ReactNode;
 }

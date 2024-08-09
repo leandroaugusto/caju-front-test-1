@@ -7,10 +7,10 @@ import {
 } from "react";
 
 import { TRegistrationsData } from "~/types/registrations.types";
-import { useRegistrationsHook } from "~/hooks/registrationsHook";
+import { useRegistrationsHook } from "~/hooks/registrations.hook";
 
 import {
-  IRegistrationsContextProps,
+  IRegistrationsProviderProps,
   TRegistrationsContextValue,
 } from "./types";
 
@@ -22,14 +22,14 @@ export const RegistrationsContext = createContext<TRegistrationsContextValue>({
 
 export const RegistrationsContextProvider = ({
   children,
-}: IRegistrationsContextProps) => {
-  const { data, isLoading, error } = useRegistrationsHook();
-
-  const registrationsData: TRegistrationsData[] | undefined = data;
-
+}: IRegistrationsProviderProps) => {
   const [registrationsState, setRegistrationsState] = useState<
     TRegistrationsData[]
   >([]);
+
+  const { data, isLoading, error } = useRegistrationsHook().fetch;
+
+  const registrationsData: TRegistrationsData[] | undefined = data;
 
   const registrationsValue = useMemo(
     () => ({ registrationsState, isLoading, error }),

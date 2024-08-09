@@ -2,17 +2,12 @@ export type TRegistrationsData = {
   email: string,
   admissionDate: string,
   employeeName: string,
-  status?: string,
-  cpf?: string,
-  id?: string
+  cpf: string,
+  id?: string,
+  status?: string
 }
 
-export type TFieldValues = {
-  name: string;
-  email: string;
-  cpf: string;
-  admissionDate: string;
-}
+export type TFieldValues = Omit<TRegistrationsData, "id" | "status">
 
 export enum ERegistrationsStatus {
   REVIEW = "REVIEW",

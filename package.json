@@ -20,6 +20,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@tanstack/react-query": "^5.51.18",
+    "@tanstack/react-query-devtools": "^5.51.23",
     "axios": "^1.7.2",
     "json-server": "^1.0.0-beta.1",
     "react": "^18.2.0",

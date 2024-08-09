@@ -4,11 +4,13 @@ import { cpfValidator, emailValidator, nameValidator, dateValidator } from ".";
 
 export const schema = yup
   .object({
-    name: yup
+    employeeName: yup
       .string()
       .required("Nome é obrigatório")
       .min(2, "Nome deve ter ao menos 2 caracteres")
-      .test("is-valid-name", "Insira um nome válido", (value) => nameValidator(value)),
+      .test("is-valid-name", "Insira um nome válido", (value) => {
+        return !value.endsWith(" ") && nameValidator(value)
+      }),
 
     email: yup
       .string()

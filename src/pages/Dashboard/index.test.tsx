@@ -7,7 +7,7 @@ import {
   ERegistrationsStatus,
   TRegistrationsData,
 } from "~/types/registrations.types";
-import { useRegistrationsHook } from "../../hooks/registrationsHook";
+import { useRegistrationsHook } from "~/hooks/registrations.hook";
 
 import DashboardPage from ".";
 
@@ -71,7 +71,7 @@ describe("DashboardPage", () => {
     }));
 
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
-    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    await waitFor(() => expect(result.current.fetch.isSuccess).toBe(true));
 
     const { container } = customRender(<DashboardPage />);
 
@@ -93,7 +93,7 @@ describe("DashboardPage", () => {
     }));
 
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
-    await waitFor(() => expect(result.current.isLoading).toBe(true));
+    await waitFor(() => expect(result.current.fetch.isLoading).toBe(true));
 
     customRender(<DashboardPage />);
 
@@ -111,7 +111,7 @@ describe("DashboardPage", () => {
     }));
 
     const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
-    await waitFor(() => expect(result.current.error).not.toBeNull());
+    await waitFor(() => expect(result.current.fetch.error).not.toBeNull());
 
     customRender(<DashboardPage />);
 
