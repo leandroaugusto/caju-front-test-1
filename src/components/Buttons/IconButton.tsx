@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
-export const _IconButtonStyled = styled.button`
+import { pxToRem } from "~/utils/pxToRem";
+
+export const IconButtonStyled = styled.button`
   cursor: pointer;
-  border: 2px solid #64a98c;
+  border: ${pxToRem(2)} solid #64a98c;
   width: fit-content;
-  padding: 4px;
-  border-radius: 24px;
+  padding: 0.25rem;
+  border-radius: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,9 +22,5 @@ type IconButtonProps = {
 } & React.HTMLAttributes<HTMLButtonElement>;
 
 export const IconButton = (props: IconButtonProps) => {
-  return (
-    <_IconButtonStyled {...props}>
-      {props.children}
-    </_IconButtonStyled>
-  );
+  return <IconButtonStyled {...props}>{props.children}</IconButtonStyled>;
 };

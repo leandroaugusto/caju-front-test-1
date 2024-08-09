@@ -5,14 +5,16 @@ module.exports = {
     browser: true,
     es2020: true,
   },
+  parser: "@typescript-eslint/parser",
+  plugins: ["react", "@typescript-eslint"],
   extends: [
     "eslint:recommended",
+    "eslint-config-prettier",
     "plugin:react/recommended",
     "plugin:import/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "eslint-config-prettier",
     "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
   ignorePatterns: ["node_modules/*", ".eslintcache"],
   settings: {
@@ -27,7 +29,7 @@ module.exports = {
     },
   },
   rules: {
-    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
     "react/react-in-jsx-scope": "off",
     "import/no-named-as-default": 0,
     "import/no-unresolved": ["error", { ignore: ["^~/"] }],

@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
+import { pxToRem } from "~/utils/pxToRem";
+
 const Button = styled.button`
-  outline: none;
+  /* outline: none; */
   display: flex;
   align-items: center;
   border: none;
-  border-radius: 36px;
-  padding: 8px 32px;
+  border-radius: ${pxToRem(36)};
+  padding: 0.5rem 2rem;
   background-color: #64a98c;
   cursor: pointer;
-  height: 56px;
+  height: ${pxToRem(56)};
   color: #fff;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  font-size: 16px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0 0.5rem 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
 `;
 
@@ -20,13 +22,13 @@ export const ButtonSmall = styled.button<{
   $buttonTheme: "approved" | "reproved" | "review";
   color?: string;
 }>`
-  font-size: 12px;
-  outline: none;
-  border-radius: 4px;
+  font-size: ${pxToRem(12)};
+  /* outline: none; */
+  border-radius: 0.25rem;
   border: none;
-  padding: 4px 16px;
+  padding: 0.25rem 1rem;
   background-color: ${({ $buttonTheme, theme }) =>
-    theme.colors[$buttonTheme].button ?? "none"};
+    theme.colors.buttons[$buttonTheme] ?? theme.colors.primary};
   color: ${({ color }) => color ?? "#000"};
   cursor: pointer;
 `;

@@ -1,13 +1,33 @@
-import { TRegistrationsData } from "~/types/registrations.types";
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 
-import { useRegistrationsHook } from "./hooks/registrationsHook";
+import { RegistrationsContext } from "~/contexts/registrations.context";
+
+import { SnackBar } from "~/components/Snackbar";
+
 import { SearchBar } from "./components/Searchbar";
 import { Columns } from "./components/Columns";
+
 import * as S from "./styles";
 
 const DashboardPage = () => {
-  const { data, isLoading, error } = useRegistrationsHook();
-  const registrations: TRegistrationsData[] | undefined = data;
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+
+  const {
+    registrationsState: registrations,
+    isLoading,
+    error,
+  } = useContext(RegistrationsContext);
+
+  const location = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (location.state === "registered") {
+      setOpenSnackbar(true);
+      history.replace(location.pathname, null);
+    }
+  }, [location.state, location.pathname, history]);
 
   if (isLoading) return <p data-testid="loading-container">Loading</p>;
 
@@ -18,6 +38,12 @@ const DashboardPage = () => {
     <S.Container>
       <SearchBar />
       <Columns registrations={registrations} />
+
+      <SnackBar
+        open={openSnackbar}
+        onClose={() => setOpenSnackbar(false)}
+        message={"Admissão salva com sucesso"}
+      />
     </S.Container>
   );
 };
