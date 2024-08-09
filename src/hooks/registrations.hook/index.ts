@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
+import type { TRegistrationsData } from "~/types/registrations.types";
+
 async function fetchRegistrations() {
   const { data } = await axios.get("http://localhost:3000/registrations");
   return data;
 }
 
-async function saveRegistration(params: any) {
-  console.log("[OFF] Saving", params)
+async function saveRegistration(params: Partial<TRegistrationsData>) {
   const { data } = await axios.post("http://localhost:3000/registrations", params);
   return data;
 }

@@ -24,6 +24,7 @@ import * as S from "./styles";
 
 const NewUserPage = () => {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const { registrationsState: registrations } =
     useContext(RegistrationsContext);
@@ -40,9 +41,10 @@ const NewUserPage = () => {
 
   const history = useHistory();
 
-  const goToHomePage = () => history.push(routes.dashboard);
+  const goToHomePage = ({ state }: { state?: string }) =>
+    history.push(routes.dashboard, state);
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const dateFormat = formatDate(data.admissionDate);
     const isUserAlreadyRegistered = registrations.some(
       (registration) => registration.cpf === data.cpf
@@ -61,16 +63,24 @@ const NewUserPage = () => {
     };
 
     if (isUserAlreadyRegistered) {
+      setErrorMessage("CPF de usuário já cadastrado");
       setOpenSnackbar(true);
     } else {
-      mutation.mutate(payload);
+      try {
+        await mutation.mutateAsync(payload);
+        goToHomePage({ state: "registered" });
+      } catch (error) {
+        if (error instanceof Error) {
+          setErrorMessage(error.message);
+        }
+      }
     }
   };
 
   return (
     <S.Container>
       <S.Card>
-        <IconButton onClick={goToHomePage} aria-label="back">
+        <IconButton onClick={() => goToHomePage({})} aria-label="back">
           <HiOutlineArrowLeft size={24} />
         </IconButton>
 
@@ -84,7 +94,7 @@ const NewUserPage = () => {
         <SnackBar
           open={openSnackbar}
           onClose={() => setOpenSnackbar(false)}
-          message="CPF de usuário já cadastrado!"
+          message={errorMessage}
         />
       </S.Card>
     </S.Container>

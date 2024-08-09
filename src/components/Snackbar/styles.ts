@@ -7,9 +7,9 @@ export const Container = styled.div<{ $visible: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 2rem;
-  gap: 1rem;
+  top: 2rem;
   left: 2rem;
+  gap: 1rem;
   padding: 0.8rem 1rem;
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.primary};
