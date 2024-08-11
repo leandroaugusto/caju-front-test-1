@@ -70,7 +70,23 @@
       "cpf": "34226047079",
       "email": "zeze@mail.com",
       "employeeName": "Zezé Polessa",
-      "status": "APPROVED"
+      "status": "REPROVED"
+    },
+    {
+      "id": "23",
+      "admissionDate": "06/08/2024",
+      "cpf": "73401328050",
+      "email": "antonio@nunes.com",
+      "employeeName": "Antonio Nunes",
+      "status": "REPROVED"
+    },
+    {
+      "id": "24",
+      "admissionDate": "31/07/2024",
+      "cpf": "65452500006",
+      "email": "george.bush@hotmail.com",
+      "employeeName": "George W Bush",
+      "status": "REVIEW"
     }
   ]
 }

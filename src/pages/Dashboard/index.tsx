@@ -13,6 +13,7 @@ import * as S from "./styles";
 
 const DashboardPage = () => {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+  const [snackbarMessage, setSnackbarMessage] = useState<string>("");
 
   const {
     registrationsState: registrations,
@@ -24,9 +25,9 @@ const DashboardPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log("[OFF] Location", { location });
-    if (location.state === "show-feedback") {
+    if (location.state) {
       setOpenSnackbar(true);
+      setSnackbarMessage(location.state as string);
       history.replace(location.pathname, null);
     }
   }, [location.state, location.pathname, history]);
@@ -45,7 +46,7 @@ const DashboardPage = () => {
       <SnackBar
         open={openSnackbar}
         onClose={() => setOpenSnackbar(false)}
-        message={"Admissão salva com sucesso"}
+        message={snackbarMessage}
       />
     </S.Container>
   );

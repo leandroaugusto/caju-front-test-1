@@ -86,7 +86,7 @@ const NewUserPage = () => {
 
     try {
       await save.mutateAsync(payload.current);
-      goToHomePage({ state: "show-feedback" });
+      goToHomePage({ state: "Admissão salva com sucesso" });
     } catch (error) {
       setOpenModal(false);
       setLoading(false);
