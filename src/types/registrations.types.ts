@@ -1,10 +1,10 @@
 export type TRegistrationsData = {
-  email: string,
-  admissionDate: string,
-  employeeName: string,
+  id: string,
   cpf: string,
-  id?: string,
-  status?: string
+  email: string,
+  employeeName: string,
+  admissionDate: string,
+  status: ERegistrationsStatus,
 }
 
 export type TFieldValues = Omit<TRegistrationsData, "id" | "status">

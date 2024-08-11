@@ -29,6 +29,7 @@ module.exports = {
     },
   },
   rules: {
+    "no-console": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
     "react/react-in-jsx-scope": "off",
     "import/no-named-as-default": 0,

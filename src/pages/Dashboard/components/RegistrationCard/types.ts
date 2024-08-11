@@ -1,4 +1,5 @@
 import { TRegistrationsData } from "~/types/registrations.types"
 export interface IRegistrationCardProps {
-  data: TRegistrationsData;
+  data: Pick<TRegistrationsData, "employeeName" | "email" | "admissionDate" | "status">;
+  onCardAction: (key: 'delete' | 'review' | 'reprove' | 'approve') => void;
 };

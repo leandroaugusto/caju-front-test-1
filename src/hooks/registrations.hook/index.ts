@@ -13,6 +13,16 @@ async function saveRegistration(params: Partial<TRegistrationsData>) {
   return data;
 }
 
+async function deleteRegistration(id: string) {
+  const { data } = await axios.delete(`http://localhost:3000/registrations/${id}`);
+  return data;
+}
+
+async function reviewRegistration(params: Partial<TRegistrationsData>) {
+  const { data } = await axios.patch(`http://localhost:3000/registrations/${params.id}`, params);
+  return data;
+}
+
 export function useRegistrationsHook() {
   const queryClient = useQueryClient();
 
@@ -21,12 +31,26 @@ export function useRegistrationsHook() {
     queryFn: fetchRegistrations,
   });
 
-  const mutation = useMutation({
+  const save = useMutation({
     mutationFn: saveRegistration,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["registrations"] })
+    },
+  });
+
+  const deleteUser = useMutation({
+    mutationFn: deleteRegistration,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["registrations"] })
     },
   })
 
-  return { fetch, mutation }
+  const reviewUser = useMutation({
+    mutationFn: reviewRegistration,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["registrations"] })
+    },
+  })
+
+  return { fetch, save, deleteUser, reviewUser }
 }

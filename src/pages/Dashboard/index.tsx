@@ -24,7 +24,8 @@ const DashboardPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (location.state === "registered") {
+    console.log("[OFF] Location", { location });
+    if (location.state === "show-feedback") {
       setOpenSnackbar(true);
       history.replace(location.pathname, null);
     }
@@ -38,6 +39,7 @@ const DashboardPage = () => {
   return (
     <S.Container>
       <SearchBar />
+
       <Columns registrations={registrations} />
 
       <SnackBar

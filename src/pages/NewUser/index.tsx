@@ -14,14 +14,16 @@ import {
 
 import routes from "~/router/routes";
 
-import { IconButton } from "~/components/Buttons/IconButton";
 import { Form } from "./components/Form";
+
+import { IconButton } from "~/components/Buttons/IconButton";
 import { SnackBar } from "~/components/Snackbar";
 import { Modal } from "~/components/Modal";
 import { Loading } from "~/components/Loading";
 
 import { formatDate } from "./utils/formatters";
-import { schema } from "./utils/validations";
+import { schema } from "~/schemas/new-user.schema";
+
 import * as S from "./styles";
 
 const NewUserPage = () => {
@@ -35,7 +37,7 @@ const NewUserPage = () => {
   const { registrationsState: registrations } =
     useContext(RegistrationsContext);
 
-  const { mutation } = useRegistrationsHook();
+  const { save } = useRegistrationsHook();
 
   const {
     register,
@@ -83,8 +85,8 @@ const NewUserPage = () => {
     setLoading(true);
 
     try {
-      await mutation.mutateAsync(payload.current);
-      goToHomePage({ state: "registered" });
+      await save.mutateAsync(payload.current);
+      goToHomePage({ state: "show-feedback" });
     } catch (error) {
       setOpenModal(false);
       setLoading(false);

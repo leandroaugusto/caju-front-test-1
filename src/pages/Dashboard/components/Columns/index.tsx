@@ -1,10 +1,11 @@
 import { toLower } from "~/utils/toLower";
 
-import { RegistrationCard } from "../RegistrationCard";
+import { Card } from "../../containers/Card";
 
-import * as S from "./styles";
 import { IColumnsProps } from "./types";
 import { allColumns } from "./constants";
+
+import * as S from "./styles";
 
 export const Columns = ({ registrations }: IColumnsProps) => {
   return (
@@ -23,10 +24,7 @@ export const Columns = ({ registrations }: IColumnsProps) => {
               {registrations?.map(
                 (registration) =>
                   registration.status === column.status && (
-                    <RegistrationCard
-                      data={registration}
-                      key={registration.id}
-                    />
+                    <Card data={registration} key={registration.id} />
                   )
               )}
             </S.CollumContent>
