@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
 import { RegistrationsContext } from "~/contexts/registrations.context";
@@ -6,7 +6,7 @@ import { RegistrationsContext } from "~/contexts/registrations.context";
 import { SnackBar } from "~/components/Snackbar";
 import { Loading } from "~/components/Loading";
 
-import { SearchBar } from "./components/Searchbar";
+import { Search } from "./containers/Search";
 import { Columns } from "./components/Columns";
 
 import * as S from "./styles";
@@ -39,7 +39,7 @@ const DashboardPage = () => {
 
   return (
     <S.Container>
-      <SearchBar />
+      <Search />
 
       <Columns registrations={registrations} />
 

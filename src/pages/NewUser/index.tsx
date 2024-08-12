@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
@@ -7,6 +7,7 @@ import { useHookFormMask } from "use-mask-input";
 
 import { useRegistrationsHook } from "~/hooks/registrations.hook";
 import { RegistrationsContext } from "~/contexts/registrations.context";
+
 import {
   ERegistrationsStatus,
   TRegistrationsData,
@@ -55,7 +56,7 @@ const NewUserPage = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const dateFormat = formatDate(data.admissionDate);
     const isUserAlreadyRegistered = registrations.some(
-      (registration) => registration.cpf === data.cpf
+      (registration: TRegistrationsData) => registration.cpf === data.cpf
     );
     const getHighestId: number = registrations.reduce(
       (acc: number, curr: TRegistrationsData) =>
@@ -123,7 +124,7 @@ const NewUserPage = () => {
         <Modal
           open={openModal}
           onClose={() => setOpenModal(false)}
-          message="Registrar novo usuário?"
+          message="Deseja registrar nova admissão?"
           confirm={saveUser}
         />
       </S.Card>

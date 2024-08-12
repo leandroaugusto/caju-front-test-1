@@ -1,56 +1,50 @@
-import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-import type { TRegistrationsData } from "~/types/registrations.types";
+import * as Services from "~/services";
 
-async function fetchRegistrations() {
-  const { data } = await axios.get("http://localhost:3000/registrations");
-  return data;
+const key: string = "registrations";
+
+export function useFetchRegistrationsByCpfHook(cpf: string) {
+  return useQuery({
+    queryKey: [key, cpf],
+    queryFn: () => Services.fetchRegistrationByCPF(cpf),
+    enabled: !!cpf,
+  });
 }
 
-async function saveRegistration(params: Partial<TRegistrationsData>) {
-  const { data } = await axios.post("http://localhost:3000/registrations", params);
-  return data;
-}
-
-async function deleteRegistration(id: string) {
-  const { data } = await axios.delete(`http://localhost:3000/registrations/${id}`);
-  return data;
-}
-
-async function reviewRegistration(params: Partial<TRegistrationsData>) {
-  const { data } = await axios.patch(`http://localhost:3000/registrations/${params.id}`, params);
-  return data;
+export function useFetchAllRegistrationsHook(refetch: boolean = false) {
+  return useQuery({
+    queryKey: [key],
+    queryFn: Services.fetchAllRegistrations,
+    enabled: true,
+    refetchOnMount: refetch,
+    refetchOnWindowFocus: false,
+  });
 }
 
 export function useRegistrationsHook() {
   const queryClient = useQueryClient();
 
-  const fetch = useQuery({
-    queryKey: ["registrations"],
-    queryFn: fetchRegistrations,
-  });
-
   const save = useMutation({
-    mutationFn: saveRegistration,
+    mutationFn: Services.saveRegistration,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["registrations"] })
+      queryClient.invalidateQueries({ queryKey: [key] })
     },
   });
 
   const deleteUser = useMutation({
-    mutationFn: deleteRegistration,
+    mutationFn: Services.deleteRegistration,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["registrations"] })
+      queryClient.invalidateQueries({ queryKey: [key] })
     },
   })
 
   const reviewUser = useMutation({
-    mutationFn: reviewRegistration,
+    mutationFn: Services.reviewRegistration,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["registrations"] })
+      queryClient.invalidateQueries({ queryKey: [key] })
     },
   })
 
-  return { fetch, save, deleteUser, reviewUser }
+  return { save, deleteUser, reviewUser }
 }

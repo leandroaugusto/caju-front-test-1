@@ -33,14 +33,6 @@
       "status": "APPROVED"
     },
     {
-      "id": "17",
-      "admissionDate": "01/08/2024",
-      "cpf": "59069015072",
-      "email": "leandroacosta2008@hotmail.com",
-      "employeeName": "Leandro A",
-      "status": "APPROVED"
-    },
-    {
       "id": "18",
       "admissionDate": "22/10/2023",
       "cpf": "56642105087",
@@ -49,43 +41,27 @@
       "status": "APPROVED"
     },
     {
-      "id": "19",
-      "admissionDate": "14/07/2005",
-      "cpf": "29091386070",
-      "email": "maria@mail.com",
-      "employeeName": "Maria DB",
+      "id": "27",
+      "admissionDate": "07/08/2024",
+      "cpf": "30613250001",
+      "email": "jorge@mail.com",
+      "employeeName": "Jorge Aragão",
       "status": "REPROVED"
     },
     {
-      "id": "21",
-      "admissionDate": "08/08/2024",
-      "cpf": "11680694081",
-      "email": "luiz@jr.com",
-      "employeeName": "Luiz Carlos Jr",
+      "id": "29",
+      "admissionDate": "05/08/2024",
+      "cpf": "05852025089",
+      "email": "mail@mail.com",
+      "employeeName": "Joana D'arc",
       "status": "REVIEW"
     },
     {
-      "id": "22",
-      "admissionDate": "10/08/2024",
-      "cpf": "34226047079",
-      "email": "zeze@mail.com",
-      "employeeName": "Zezé Polessa",
-      "status": "REPROVED"
-    },
-    {
-      "id": "23",
-      "admissionDate": "06/08/2024",
-      "cpf": "73401328050",
-      "email": "antonio@nunes.com",
-      "employeeName": "Antonio Nunes",
-      "status": "REPROVED"
-    },
-    {
-      "id": "24",
-      "admissionDate": "31/07/2024",
-      "cpf": "65452500006",
-      "email": "george.bush@hotmail.com",
-      "employeeName": "George W Bush",
+      "id": "30",
+      "admissionDate": "12/08/2024",
+      "cpf": "83371121070",
+      "email": "joao@gmail.com",
+      "employeeName": "João do Pulo",
       "status": "REVIEW"
     }
   ]

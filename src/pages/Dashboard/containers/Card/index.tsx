@@ -18,7 +18,7 @@ import { promptMessages } from "./constants";
 export const Card = ({ data }: ICardContainerProps) => {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [snackbarMessage, setSnackbarMessage] = useState<string>("Teste");
+  const [snackbarMessage, setSnackbarMessage] = useState<string>("");
   const [action, setAction] = useState<TActionType>("review");
   const [loading, setLoading] = useState<boolean>(false);
 
