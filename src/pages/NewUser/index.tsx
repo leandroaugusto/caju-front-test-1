@@ -1,12 +1,14 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHookFormMask } from "use-mask-input";
 
-import { useRegistrationsHook } from "~/hooks/registrations.hook";
-import { RegistrationsContext } from "~/contexts/registrations.context";
+import {
+  useRegistrationsHook,
+  useFetchAllRegistrationsHook,
+} from "~/hooks/registrations.hook";
 
 import {
   ERegistrationsStatus,
@@ -35,8 +37,7 @@ const NewUserPage = () => {
 
   const payload = useRef<Partial<TRegistrationsData>>({});
 
-  const { registrationsState: registrations } =
-    useContext(RegistrationsContext);
+  const { data: registrations } = useFetchAllRegistrationsHook();
 
   const { save } = useRegistrationsHook();
 

@@ -24,6 +24,7 @@ export const TextField = forwardRef<
 
         <S.Input
           {...rest}
+          id={id}
           name={id}
           type={type}
           ref={ref}

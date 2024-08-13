@@ -1,7 +1,7 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
-import { RegistrationsContext } from "~/contexts/registrations.context";
+import { useFetchAllRegistrationsHook } from "~/hooks/registrations.hook";
 
 import { SnackBar } from "~/components/Snackbar";
 import { Loading } from "~/components/Loading";
@@ -16,10 +16,12 @@ const DashboardPage = () => {
   const [snackbarMessage, setSnackbarMessage] = useState<string>("");
 
   const {
-    registrationsState: registrations,
+    data: registrations,
     isLoading,
     error,
-  } = useContext(RegistrationsContext);
+  } = useFetchAllRegistrationsHook();
+
+  console.log("[OFF] Dashboard", { registrations });
 
   const location = useLocation();
   const history = useHistory();
