@@ -23,7 +23,6 @@ export const Columns = ({ registrations }: IColumnsProps) => {
             <S.CollumContent data-testid="column-content">
               {registrations?.map(
                 (registration) =>
-                  registration.active &&
                   registration.status === column.status && (
                     <Card data={registration} key={registration.id} />
                   )

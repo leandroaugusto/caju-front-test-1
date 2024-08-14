@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 
 import { RegistrationsContext } from "~/contexts/registrations.context";
@@ -49,12 +49,6 @@ export function useFetchAllRegistrationsHook(page: number = 0, refetchOnMount: b
   return useQuery({
     queryKey: [queryKey],
     queryFn: () => Services.fetchAllRegistrations({ page }),
-    select: useCallback((data: any) => {
-      const addFlagToData = data.map((user: TRegistrationsData) => {
-        return { ...user, active: true };
-      });
-      return addFlagToData;
-    }, []),
     enabled: true,
     initialData: registrationsState,
     placeholderData: keepPreviousData,

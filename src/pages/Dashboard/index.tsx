@@ -1,27 +1,59 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState, memo, useCallback } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
-import { useFetchAllRegistrationsHook } from "~/hooks/registrations.hook";
+import {
+  useFetchAllRegistrationsHook,
+  useFetchRegistrationsByCpfHook,
+} from "~/hooks/registrations.hook";
 
 import { SnackBar } from "~/components/Snackbar";
 import { Loading } from "~/components/Loading";
+import { Columns } from "./components/Columns";
 
 import { Search } from "./containers/Search";
-import { Columns } from "./components/Columns";
 
 import * as S from "./styles";
 
-const DashboardPage = () => {
+const SearchMemo = memo(Search, () => true);
+
+function DashboardPage() {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [snackbarMessage, setSnackbarMessage] = useState<string>("");
+  const [cpfValueState, setCpfValueState] = useState<string>("");
 
   const {
     data: registrations,
-    isLoading,
-    error,
+    isFetchedAfterMount,
+    refetch,
+    isRefetching,
+    isLoading: allRegistrationsLoading,
+    error: allRegistrationsError,
   } = useFetchAllRegistrationsHook();
 
-  console.log("[OFF] Dashboard", { registrations });
+  const {
+    data: filteredRegistrations,
+    isLoading: filteredRegistrationsLoading,
+    error: filteredRegistrationsError,
+  } = useFetchRegistrationsByCpfHook(cpfValueState);
+
+  const fetchedData = useMemo(() => {
+    return filteredRegistrations || registrations;
+  }, [registrations, filteredRegistrations]);
+
+  const isLoading = useMemo(() => {
+    return filteredRegistrationsLoading || allRegistrationsLoading;
+  }, [allRegistrationsLoading, filteredRegistrationsLoading]);
+
+  const error = useMemo(() => {
+    return filteredRegistrationsError || allRegistrationsError;
+  }, [allRegistrationsError, filteredRegistrationsError]);
+
+  const handleSetCpfValue = useCallback(
+    (cpf: string) => {
+      setCpfValueState(cpf);
+    },
+    [setCpfValueState]
+  );
 
   const location = useLocation();
   const history = useHistory();
@@ -34,6 +66,14 @@ const DashboardPage = () => {
     }
   }, [location.state, location.pathname, history]);
 
+  useEffect(() => {
+    console.log("[OFF] Dashboard CPF", { cpfValueState });
+  }, [cpfValueState]);
+
+  useEffect(() => {
+    if (isRefetching) setCpfValueState("");
+  }, [isRefetching, setCpfValueState]);
+
   if (isLoading) return <Loading />;
 
   if (error && error.message)
@@ -41,9 +81,12 @@ const DashboardPage = () => {
 
   return (
     <S.Container>
-      <Search />
+      <Search
+        cpfValueAsProp={cpfValueState}
+        setCpfValueAsProp={handleSetCpfValue}
+      />
 
-      <Columns registrations={registrations} />
+      <Columns registrations={fetchedData} />
 
       <SnackBar
         open={openSnackbar}
@@ -52,6 +95,6 @@ const DashboardPage = () => {
       />
     </S.Container>
   );
-};
+}
 
 export default DashboardPage;
