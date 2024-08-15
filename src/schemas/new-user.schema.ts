@@ -1,6 +1,7 @@
 import * as yup from "yup";
 
-import { cpfValidator, emailValidator, nameValidator, dateValidator } from ".";
+import { cpfValidator } from "~/utils/validations/cpf.validation";
+import { emailValidator, nameValidator, dateValidator } from "~/pages/NewUser/utils/validations";
 
 export const schema = yup
   .object({
@@ -33,4 +34,4 @@ export const schema = yup
         (value) => dateValidator(value)
       )
   })
-  .required();
+  .required()

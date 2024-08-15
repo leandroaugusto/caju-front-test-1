@@ -11,24 +11,20 @@ export const TextField = forwardRef<
   ITextFieldProps & ReturnType<UseFormRegister<TFieldValues>>
 >(
   (
-    {
-      id,
-      label = "Campo de texto",
-      type = "text",
-      placeholder,
-      error,
-      ...rest
-    }: ITextFieldProps,
+    { id, label, type = "text", placeholder, error, ...rest }: ITextFieldProps,
     ref
   ) => {
     return (
       <S.Fieldset>
-        <S.Label $error={!!error} htmlFor={id}>
-          {label}
-        </S.Label>
+        {label && (
+          <S.Label $error={!!error} htmlFor={id}>
+            {label}
+          </S.Label>
+        )}
 
         <S.Input
           {...rest}
+          id={id}
           name={id}
           type={type}
           ref={ref}

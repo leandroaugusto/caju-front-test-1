@@ -1,12 +1,16 @@
 import { toLower } from "~/utils/toLower";
 
-import { RegistrationCard } from "../RegistrationCard";
+import { Card } from "../../containers/Card";
+import { EmptyCard } from "../../components/EmptyCard";
 
-import * as S from "./styles";
 import { IColumnsProps } from "./types";
 import { allColumns } from "./constants";
 
+import * as S from "./styles";
+
 export const Columns = ({ registrations }: IColumnsProps) => {
+  if (!registrations?.length) return <EmptyCard />;
+
   return (
     <S.Container data-testid="columns-container">
       {allColumns.map((column) => {
@@ -23,10 +27,7 @@ export const Columns = ({ registrations }: IColumnsProps) => {
               {registrations?.map(
                 (registration) =>
                   registration.status === column.status && (
-                    <RegistrationCard
-                      data={registration}
-                      key={registration.id}
-                    />
+                    <Card data={registration} key={registration.id} />
                   )
               )}
             </S.CollumContent>

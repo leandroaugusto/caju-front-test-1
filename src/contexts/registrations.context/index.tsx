@@ -7,7 +7,7 @@ import {
 } from "react";
 
 import { TRegistrationsData } from "~/types/registrations.types";
-import { useRegistrationsHook } from "~/hooks/registrations.hook";
+import { useFetchinitialRegistrationsHook } from "~/hooks/registrations.hook";
 
 import {
   IRegistrationsProviderProps,
@@ -16,8 +16,6 @@ import {
 
 export const RegistrationsContext = createContext<TRegistrationsContextValue>({
   registrationsState: [] as TRegistrationsData[],
-  isLoading: false,
-  error: null,
 });
 
 export const RegistrationsContextProvider = ({
@@ -27,13 +25,15 @@ export const RegistrationsContextProvider = ({
     TRegistrationsData[]
   >([]);
 
-  const { data, isLoading, error } = useRegistrationsHook().fetch;
+  const { data } = useFetchinitialRegistrationsHook(1);
 
   const registrationsData: TRegistrationsData[] | undefined = data;
 
   const registrationsValue = useMemo(
-    () => ({ registrationsState, isLoading, error }),
-    [registrationsState, isLoading, error]
+    () => ({
+      registrationsState,
+    }),
+    [registrationsState]
   );
 
   const setRegistrationsDataFetched = useCallback(() => {

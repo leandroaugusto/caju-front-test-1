@@ -14,7 +14,7 @@ export const Form = ({
     <TextField
       id="employeeName"
       label="Nome"
-      {...register("employeeName", { required: true })}
+      {...register("employeeName")}
       error={errors.employeeName?.message as string}
     />
 
@@ -22,7 +22,7 @@ export const Form = ({
       id="email"
       label="Email"
       type="email"
-      {...register("email", { required: true })}
+      {...register("email")}
       error={errors.email?.message as string}
     />
 
@@ -30,9 +30,7 @@ export const Form = ({
       id="cpf"
       type="tel"
       label="CPF"
-      {...registerWithMask("cpf", "999.999.999-99", {
-        required: true,
-      })}
+      {...registerWithMask("cpf", "999.999.999-99")}
       error={errors.cpf?.message as string}
     />
 
@@ -40,7 +38,7 @@ export const Form = ({
       id="admissionDate"
       type="date"
       label="Data de admissão"
-      {...register("admissionDate", { required: true })}
+      {...register("admissionDate")}
       error={errors.admissionDate?.message as string}
     />
 

@@ -1,12 +1,15 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHookFormMask } from "use-mask-input";
 
-import { useRegistrationsHook } from "~/hooks/registrations.hook";
-import { RegistrationsContext } from "~/contexts/registrations.context";
+import {
+  useRegistrationsHook,
+  useFetchAllRegistrationsHook,
+} from "~/hooks/registrations.hook";
+
 import {
   ERegistrationsStatus,
   TRegistrationsData,
@@ -14,14 +17,16 @@ import {
 
 import routes from "~/router/routes";
 
-import { IconButton } from "~/components/Buttons/IconButton";
 import { Form } from "./components/Form";
+
+import { IconButton } from "~/components/Buttons/IconButton";
 import { SnackBar } from "~/components/Snackbar";
 import { Modal } from "~/components/Modal";
 import { Loading } from "~/components/Loading";
 
 import { formatDate } from "./utils/formatters";
-import { schema } from "./utils/validations";
+import { schema } from "~/schemas/new-user.schema";
+
 import * as S from "./styles";
 
 const NewUserPage = () => {
@@ -32,10 +37,9 @@ const NewUserPage = () => {
 
   const payload = useRef<Partial<TRegistrationsData>>({});
 
-  const { registrationsState: registrations } =
-    useContext(RegistrationsContext);
+  const { data: registrations } = useFetchAllRegistrationsHook();
 
-  const { mutation } = useRegistrationsHook();
+  const { save } = useRegistrationsHook();
 
   const {
     register,
@@ -53,7 +57,7 @@ const NewUserPage = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const dateFormat = formatDate(data.admissionDate);
     const isUserAlreadyRegistered = registrations.some(
-      (registration) => registration.cpf === data.cpf
+      (registration: TRegistrationsData) => registration.cpf === data.cpf
     );
     const getHighestId: number = registrations.reduce(
       (acc: number, curr: TRegistrationsData) =>
@@ -83,8 +87,8 @@ const NewUserPage = () => {
     setLoading(true);
 
     try {
-      await mutation.mutateAsync(payload.current);
-      goToHomePage({ state: "registered" });
+      await save.mutateAsync(payload.current);
+      goToHomePage({ state: "Admissão salva com sucesso" });
     } catch (error) {
       setOpenModal(false);
       setLoading(false);
@@ -121,7 +125,7 @@ const NewUserPage = () => {
         <Modal
           open={openModal}
           onClose={() => setOpenModal(false)}
-          message="Registrar novo usuário?"
+          message="Deseja registrar nova admissão?"
           confirm={saveUser}
         />
       </S.Card>
