@@ -1,33 +1,36 @@
-import { useEffect, useMemo, useState, memo, useCallback } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useHookFormMask } from "use-mask-input";
 
 import {
   useFetchAllRegistrationsHook,
   useFetchRegistrationsByCpfHook,
 } from "~/hooks/registrations.hook";
 
+import { schema } from "~/schemas/search.schema";
+
+import { cpfValidator } from "~/utils/validations/cpf.validation";
+
 import { SnackBar } from "~/components/Snackbar";
 import { Loading } from "~/components/Loading";
 import { Columns } from "./components/Columns";
-
-import { Search } from "./containers/Search";
+import { SearchBar } from "./components/Searchbar";
 
 import * as S from "./styles";
-
-const SearchMemo = memo(Search, () => true);
 
 function DashboardPage() {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [snackbarMessage, setSnackbarMessage] = useState<string>("");
   const [cpfValueState, setCpfValueState] = useState<string>("");
+  const [debouncedCPF, setDebouncedCPF] = useState<string>("");
 
   const {
     data: registrations,
-    isFetchedAfterMount,
-    refetch,
-    isRefetching,
     isLoading: allRegistrationsLoading,
     error: allRegistrationsError,
+    refetch,
   } = useFetchAllRegistrationsHook();
 
   const {
@@ -35,6 +38,19 @@ function DashboardPage() {
     isLoading: filteredRegistrationsLoading,
     error: filteredRegistrationsError,
   } = useFetchRegistrationsByCpfHook(cpfValueState);
+
+  const location = useLocation();
+  const history = useHistory();
+
+  const { watch, register, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const registerWithMask = useHookFormMask(register);
+  const cpf = watch("cpf");
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setCpfValueState(data.cpf);
+  };
 
   const fetchedData = useMemo(() => {
     return filteredRegistrations || registrations;
@@ -48,16 +64,6 @@ function DashboardPage() {
     return filteredRegistrationsError || allRegistrationsError;
   }, [allRegistrationsError, filteredRegistrationsError]);
 
-  const handleSetCpfValue = useCallback(
-    (cpf: string) => {
-      setCpfValueState(cpf);
-    },
-    [setCpfValueState]
-  );
-
-  const location = useLocation();
-  const history = useHistory();
-
   useEffect(() => {
     if (location.state) {
       setOpenSnackbar(true);
@@ -67,12 +73,32 @@ function DashboardPage() {
   }, [location.state, location.pathname, history]);
 
   useEffect(() => {
-    console.log("[OFF] Dashboard CPF", { cpfValueState });
-  }, [cpfValueState]);
+    const timer = setTimeout(() => setDebouncedCPF(cpf), 500);
+    return () => clearTimeout(timer);
+  }, [cpf]);
 
   useEffect(() => {
-    if (isRefetching) setCpfValueState("");
-  }, [isRefetching, setCpfValueState]);
+    if (debouncedCPF && cpfValidator(debouncedCPF)) {
+      handleSubmit(onSubmit)();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedCPF]);
+
+  useEffect(() => {
+    const onlyCpfNumbers = debouncedCPF.replace(/\D/g, "");
+
+    if (cpfValueState && onlyCpfNumbers !== cpfValueState) {
+      setCpfValueState("");
+      refetch();
+    }
+  }, [debouncedCPF, cpfValueState, refetch]);
+
+  useEffect(() => {
+    if (fetchedData?.length === 0) {
+      setSnackbarMessage("Nenhum cadastro foi encontrado");
+      setOpenSnackbar(true);
+    }
+  }, [fetchedData]);
 
   if (isLoading) return <Loading />;
 
@@ -81,17 +107,14 @@ function DashboardPage() {
 
   return (
     <S.Container>
-      <Search
-        cpfValueAsProp={cpfValueState}
-        setCpfValueAsProp={handleSetCpfValue}
-      />
+      <SearchBar register={registerWithMask} />
 
       <Columns registrations={fetchedData} />
 
       <SnackBar
         open={openSnackbar}
-        onClose={() => setOpenSnackbar(false)}
         message={snackbarMessage}
+        onClose={() => setOpenSnackbar(false)}
       />
     </S.Container>
   );
