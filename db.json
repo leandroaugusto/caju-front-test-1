@@ -111,14 +111,6 @@
       "email": "mail@mail.com",
       "employeeName": "Michel Teló",
       "status": "REVIEW"
-    },
-    {
-      "id": "39",
-      "admissionDate": "06/08/2024",
-      "cpf": "70272726010",
-      "email": "mail@mail.com",
-      "employeeName": "Maria José",
-      "status": "REVIEW"
     }
   ]
 }
