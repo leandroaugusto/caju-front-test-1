@@ -2,11 +2,10 @@ import axios from "axios";
 
 import type { TRegistrationsData } from "~/types/registrations.types";
 
-const baseUrl = "http://localhost:3000";
-const path = "registrations";
+import { serverHost as baseUrl, queryKey as path } from "~/constants"
 
-export async function fetchAllRegistrations() {
-  const { data } = await axios.get(`${baseUrl}/${path}`);
+export async function fetchAllRegistrations({ page = 0, limit = 10 }: { page?: number; limit?: number }) {
+  const { data } = await axios.get(`${baseUrl}/${path}?_page=${page}&_per_page=${limit}`);
   return data;
 }
 
@@ -26,6 +25,6 @@ export async function deleteRegistration(id: string) {
 }
 
 export async function reviewRegistration(params: Partial<TRegistrationsData>) {
-  const { data } = await axios.patch(`${baseUrl}/${path}/${params.id}`, params);
+  const { data } = await axios.put(`${baseUrl}/${path}/${params.id}`, params);
   return data;
 }
