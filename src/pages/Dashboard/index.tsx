@@ -20,7 +20,7 @@ import { SearchBar } from "./components/Searchbar";
 
 import * as S from "./styles";
 
-function DashboardPage() {
+const DashboardPage = () => {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [snackbarMessage, setSnackbarMessage] = useState<string>("");
   const [cpfValueState, setCpfValueState] = useState<string>("");
@@ -53,7 +53,6 @@ function DashboardPage() {
   };
 
   const fetchedData = useMemo(() => {
-    // if (isRefetching && !filteredRegistrations.length) return registrations;
     return filteredRegistrations || registrations;
   }, [registrations, filteredRegistrations])?.flat();
 
@@ -115,6 +114,6 @@ function DashboardPage() {
       />
     </S.Container>
   );
-}
+};
 
 export default DashboardPage;
