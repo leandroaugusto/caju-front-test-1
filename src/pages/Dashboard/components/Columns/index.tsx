@@ -1,6 +1,7 @@
 import { toLower } from "~/utils/toLower";
 
 import { Card } from "../../containers/Card";
+import { EmptyCard } from "../../components/EmptyCard";
 
 import { IColumnsProps } from "./types";
 import { allColumns } from "./constants";
@@ -8,6 +9,8 @@ import { allColumns } from "./constants";
 import * as S from "./styles";
 
 export const Columns = ({ registrations }: IColumnsProps) => {
+  if (!registrations?.length) return <EmptyCard />;
+
   return (
     <S.Container data-testid="columns-container">
       {allColumns.map((column) => {

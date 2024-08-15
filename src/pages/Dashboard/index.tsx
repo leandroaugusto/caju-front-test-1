@@ -30,7 +30,7 @@ function DashboardPage() {
     data: registrations,
     isLoading: allRegistrationsLoading,
     error: allRegistrationsError,
-    refetch,
+    isRefetching,
   } = useFetchAllRegistrationsHook();
 
   const {
@@ -53,8 +53,9 @@ function DashboardPage() {
   };
 
   const fetchedData = useMemo(() => {
+    // if (isRefetching && !filteredRegistrations.length) return registrations;
     return filteredRegistrations || registrations;
-  }, [registrations, filteredRegistrations]);
+  }, [registrations, filteredRegistrations])?.flat();
 
   const isLoading = useMemo(() => {
     return filteredRegistrationsLoading || allRegistrationsLoading;
@@ -85,20 +86,16 @@ function DashboardPage() {
   }, [debouncedCPF]);
 
   useEffect(() => {
-    const onlyCpfNumbers = debouncedCPF.replace(/\D/g, "");
+    const onlyCpfNumbers = debouncedCPF?.replace(/\D/g, "");
 
-    if (cpfValueState && onlyCpfNumbers !== cpfValueState) {
+    if (cpfValueState && onlyCpfNumbers.length !== cpfValueState.length) {
       setCpfValueState("");
-      refetch();
     }
-  }, [debouncedCPF, cpfValueState, refetch]);
+  }, [debouncedCPF, cpfValueState]);
 
   useEffect(() => {
-    if (fetchedData?.length === 0) {
-      setSnackbarMessage("Nenhum cadastro foi encontrado");
-      setOpenSnackbar(true);
-    }
-  }, [fetchedData]);
+    if (isRefetching) setCpfValueState("");
+  }, [isRefetching]);
 
   if (isLoading) return <Loading />;
 
