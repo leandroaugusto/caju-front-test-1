@@ -14,8 +14,6 @@ export const Modal = ({ open, onClose, message, confirm }: IModalProps) => {
     }
   }, [open]);
 
-  if (!open) return null;
-
   return (
     <div
       ref={modalRef}
@@ -26,9 +24,9 @@ export const Modal = ({ open, onClose, message, confirm }: IModalProps) => {
       aria-hidden={!open}
       data-testid="modal-container"
     >
-      <S.Backdrop $open={open} />
+      <S.Backdrop data-testid="modal-backdrop" $open={open} />
 
-      <S.Content $open={open}>
+      <S.Content data-testid="modal-content" $open={open}>
         <S.Title id="modal-title">{message}</S.Title>
 
         <S.Actions>

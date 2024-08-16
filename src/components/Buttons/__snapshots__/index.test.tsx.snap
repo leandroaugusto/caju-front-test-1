@@ -1,0 +1,102 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > Should render button 1`] = `
+<div>
+  <button
+    class="sc-braxZu etJSfF"
+  >
+    Ativar
+  </button>
+</div>
+`;
+
+exports[`Button > Should render button with another child text 1`] = `
+<div>
+  <button
+    class="sc-braxZu etJSfF"
+    data-testid="button"
+  >
+    Aprovar
+  </button>
+</div>
+`;
+
+exports[`Button > Should render button with specific theme 1`] = `
+<div>
+  <button
+    class="sc-braxZu etJSfF"
+    data-testid="button"
+  >
+    Aprovar
+  </button>
+</div>
+`;
+
+exports[`Button > Should render icon button 1`] = `
+<div>
+  <button
+    class="sc-elDIKY feEgea"
+    data-testid="button"
+  >
+    <img
+      alt="icon"
+      data-testid="icon"
+      src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1173.jpg"
+    />
+  </button>
+</div>
+`;
+
+exports[`Button > Should render small button with specific theme 1`] = `
+<div>
+  <button
+    class="sc-gJhJTp hEpyQs"
+    data-testid="button"
+  >
+    Aprovar
+  </button>
+</div>
+`;
+
+exports[`Button > Should render small button without theme 1`] = `
+<div>
+  <button
+    class="sc-gJhJTp ftnevY"
+    data-testid="button"
+  >
+    Aprovar
+  </button>
+</div>
+`;
+
+exports[`Button Should render button 1`] = `
+<div>
+  <button
+    class="sc-braxZu etJSfF"
+  >
+    Ativar
+  </button>
+</div>
+`;
+
+exports[`Button Should render button with specific theme 1`] = `
+<div>
+  <button
+    class="sc-braxZu etJSfF"
+    data-testid="button"
+  >
+    Aprovar
+  </button>
+</div>
+`;
+
+exports[`Button Should render small button without theme 1`] = `
+<div>
+  <button
+    class="sc-braxZu etJSfF"
+    data-testid="button"
+  >
+    Aprovar
+  </button>
+</div>
+`;

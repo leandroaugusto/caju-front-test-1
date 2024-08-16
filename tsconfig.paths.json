@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "vitest/*": ["node_modules/vitest/*"],
       "~/*": ["./*"]
     }
   }

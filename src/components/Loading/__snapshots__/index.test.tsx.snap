@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header > Should render loading component 1`] = `
+<div>
+  <div
+    aria-live="polite"
+    class="sc-braxZu kSlxkK"
+    data-testid="loading-container"
+    role="status"
+  >
+    <div
+      class="sc-gJhJTp cNRuoW"
+    />
+  </div>
+</div>
+`;

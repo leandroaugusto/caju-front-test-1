@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header > Should render header component 1`] = `
+<div>
+  <header
+    class="sc-braxZu Ghofx"
+    data-testid="header"
+  >
+    <h1
+      data-testid="heading-title"
+    >
+      Caju Front Teste
+    </h1>
+  </header>
+</div>
+`;

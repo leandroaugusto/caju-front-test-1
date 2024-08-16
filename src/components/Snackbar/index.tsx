@@ -42,6 +42,7 @@ export const SnackBar = ({
     >
       <S.Text>{message}</S.Text>
       <ButtonSmall
+        data-testid="small-button"
         aria-label="close"
         $buttonTheme="approved"
         onClick={handleClose}

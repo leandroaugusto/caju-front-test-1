@@ -6,7 +6,7 @@ module.exports = {
     es2020: true,
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "vitest"],
   extends: [
     "eslint:recommended",
     "eslint-config-prettier",

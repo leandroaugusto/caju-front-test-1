@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Modal > should render correctly when open 1`] = `
+<div>
+  <div
+    aria-hidden="false"
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    data-testid="modal-container"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="sc-elDIKY hBygWI"
+      data-testid="modal-backdrop"
+    />
+    <div
+      class="sc-fQpRED cLgRmg"
+      data-testid="modal-content"
+    >
+      <p
+        class="sc-dsLQwm kSsmcA"
+        id="modal-title"
+      >
+        Mock message
+      </p>
+      <div
+        class="sc-iKTcqh ITcZU"
+      >
+        <button
+          aria-label="cancel"
+          class="sc-gJhJTp kQOKiA"
+        >
+          Cancelar
+        </button>
+        <button
+          aria-label="confirm"
+          class="sc-gJhJTp hEpyQs"
+        >
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
