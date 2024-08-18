@@ -8,7 +8,7 @@ import { useHookFormMask } from "use-mask-input";
 import {
   useRegistrationsHook,
   useFetchAllRegistrationsHook,
-} from "~/hooks/registrations.hook";
+} from "~/hooks/useRegistrations";
 
 import {
   ERegistrationsStatus,

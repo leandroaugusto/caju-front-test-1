@@ -9,7 +9,7 @@ export const Fieldset = styled.fieldset`
 `;
 
 export const Label = styled.label<{ $error?: boolean }>`
-  color: ${props => (props.$error ? "#ff0000" : "initial")};
+  color: ${({ $error }) => ($error ? "#ff0000" : "initial")};
 `;
 
 export const Input = styled.input<{ $error?: boolean }>`
@@ -19,7 +19,7 @@ export const Input = styled.input<{ $error?: boolean }>`
   width: 100%;
   min-height: ${pxToRem(36)};
   background-color: #ffffff;
-  border: ${pxToRem(1)} solid ${props => (props.$error ? "#ff0000" : "#241c154d")};
+  border: ${pxToRem(1)} solid ${({ $error }) => ($error ? "#ff0000" : "#241c154d")};
   transition: all 0.2s ease-in-out 0s;
   font-size: 1rem;
   line-height: ${pxToRem(18)};

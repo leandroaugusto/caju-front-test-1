@@ -7,7 +7,7 @@ import {
   ERegistrationsStatus,
   TRegistrationsData,
 } from "~/types/registrations.types";
-import { useRegistrationsHook } from "~/hooks/registrations.hook";
+import { useRegistrationsHook } from "~/hooks/useRegistrations";
 
 import DashboardPage from ".";
 

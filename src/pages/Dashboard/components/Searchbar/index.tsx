@@ -5,7 +5,7 @@ import Button from "~/components/Buttons";
 import { IconButton } from "~/components/Buttons/IconButton";
 import { TextField } from "~/components/TextField";
 
-import { useFetchAllRegistrationsHook } from "~/hooks/registrations.hook";
+import { useFetchAllRegistrationsHook } from "~/hooks/useRegistrations";
 
 import routes from "~/router/routes";
 

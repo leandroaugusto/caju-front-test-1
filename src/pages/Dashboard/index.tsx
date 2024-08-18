@@ -7,7 +7,7 @@ import { useHookFormMask } from "use-mask-input";
 import {
   useFetchAllRegistrationsHook,
   useFetchRegistrationsByCpfHook,
-} from "~/hooks/registrations.hook";
+} from "~/hooks/useRegistrations";
 
 import { schema } from "~/schemas/search.schema";
 

@@ -7,7 +7,7 @@ import {
 } from "react";
 
 import { TRegistrationsData } from "~/types/registrations.types";
-import { useFetchinitialRegistrationsHook } from "~/hooks/registrations.hook";
+import { useFetchinitialRegistrationsHook } from "~/hooks/useRegistrations";
 
 import {
   IRegistrationsProviderProps,

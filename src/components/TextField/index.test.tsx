@@ -1,64 +1,57 @@
-import { vi } from "vitest";
-import { UseFormRegister } from "react-hook-form";
-
+import { userEvent } from "@testing-library/user-event";
 import { customRender, screen } from "~/test-utils";
+
 import { TextField } from ".";
 
 describe("TextField", () => {
-  const mockRegister: ReturnType<UseFormRegister<any>> = vi.fn();
-
   const testCases = [
     {
-      id: "test1",
+      id: "name",
       label: "Test 1",
       type: "text",
       placeholder: "Enter text",
       error: "Error message",
-      register: mockRegister,
     },
     {
-      id: "test2",
-      label: "Test 2",
-      type: "password",
-      placeholder: "Enter password",
-      error: "",
-      register: mockRegister,
-    },
-    {
-      id: "test3",
-      label: "",
+      id: "email",
+      label: "Email",
       type: "email",
-      placeholder: "Enter email",
       error: "Error message",
-      register: mockRegister,
     },
     {
-      id: "test4",
-      label: "Test 4",
-      type: "text",
-      placeholder: "",
+      id: "cpf",
+      type: "tel",
       error: "",
-      register: mockRegister,
     },
   ];
 
-  testCases.forEach((testCase) => {
-    it(`renders TextField with id ${testCase.id}`, () => {
-      customRender(<TextField {...testCase} />);
+  it.each(testCases)("renders TextField with props: %s", async (input) => {
+    customRender(<TextField {...input} />);
 
-      const inputElement = screen.getByTestId(testCase.id);
-      expect(inputElement).toBeInTheDocument();
-      expect(inputElement).toHaveAttribute("type", testCase.type);
+    const inputElement = screen.getByRole("textbox", { name: input.label });
 
-      if (testCase.label) {
-        const labelElement = screen.getByText(testCase.label);
-        expect(labelElement).toBeInTheDocument();
-      }
+    expect(inputElement).toBeInTheDocument();
+    expect(inputElement).toHaveAttribute("type", input.type);
 
-      if (testCase.error) {
-        const errorElement = screen.getByText(testCase.error);
-        expect(errorElement).toBeInTheDocument();
-      }
-    });
+    if (input.label) {
+      const labelElement = screen.getByText(input.label);
+      const labelColor = getComputedStyle(labelElement).color;
+
+      expect(labelElement).toHaveStyle(`color: ${labelColor}`);
+      expect(labelElement).toBeInTheDocument();
+    }
+
+    if (input.error) {
+      const errorElement = screen.getByText(input.error);
+
+      expect(inputElement).toHaveStyle("border-color: #ff0000");
+      expect(errorElement).toBeInTheDocument();
+    } else {
+      expect(inputElement).toHaveStyle("border-color: #241c154d");
+    }
+
+    await userEvent.type(inputElement, "test");
+
+    expect(inputElement).toHaveValue("test");
   });
 });
