@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react-hooks";
 
 import { customRender, screen, waitFor } from "~/test-utils";
@@ -7,7 +8,7 @@ import {
   ERegistrationsStatus,
   TRegistrationsData,
 } from "~/types/registrations.types";
-import { useRegistrationsHook } from "~/hooks/useRegistrations";
+import { useFetchAllRegistrationsHook } from "~/hooks/useRegistrations";
 
 import DashboardPage from ".";
 
@@ -30,7 +31,7 @@ const mockRegistrations: TRegistrationsData[] = [
   },
 ];
 
-const mockUseQuery = jest.fn(() => ({
+const mockUseQuery = vi.fn(() => ({
   isLoading: true,
   isSuccess: false,
   error: null,
@@ -42,16 +43,19 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
-jest.mock("@tanstack/react-query", () => ({
-  ...jest.requireActual("@tanstack/react-query"),
-  useQuery: () => mockUseQuery(),
-}));
+vi.doMock(import("@tanstack/react-query"), async (importOriginal) => {
+  const mod = await importOriginal();
+  return {
+    ...mod,
+    useQuery: () => mockUseQuery(),
+  };
+});
 
-jest.mock("./components/Searchbar", () => ({
+vi.mock("./components/Searchbar", () => ({
   SearchBar: () => <div data-testid="mock-search-bar-container">SearchBar</div>,
 }));
 
-jest.mock("./components/Columns", () => ({
+vi.mock("./components/Columns", () => ({
   Columns: ({ registrations }: { registrations: TRegistrationsData[] }) => (
     <div data-testid="mock-columns-container">
       {registrations.map((i) => (
@@ -70,8 +74,10 @@ describe("DashboardPage", () => {
       data: mockRegistrations,
     }));
 
-    const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
-    await waitFor(() => expect(result.current.fetch.isSuccess).toBe(true));
+    const { result } = renderHook(() => useFetchAllRegistrationsHook(), {
+      wrapper,
+    });
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     const { container } = customRender(<DashboardPage />);
 
@@ -92,8 +98,10 @@ describe("DashboardPage", () => {
       isLoading: true,
     }));
 
-    const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
-    await waitFor(() => expect(result.current.fetch.isLoading).toBe(true));
+    const { result } = renderHook(() => useFetchAllRegistrationsHook(), {
+      wrapper,
+    });
+    await waitFor(() => expect(result.current.isLoading).toBe(true));
 
     customRender(<DashboardPage />);
 
@@ -110,8 +118,10 @@ describe("DashboardPage", () => {
       },
     }));
 
-    const { result } = renderHook(() => useRegistrationsHook(), { wrapper });
-    await waitFor(() => expect(result.current.fetch.error).not.toBeNull());
+    const { result } = renderHook(() => useFetchAllRegistrationsHook(), {
+      wrapper,
+    });
+    await waitFor(() => expect(result.current.error).not.toBeNull());
 
     customRender(<DashboardPage />);
 

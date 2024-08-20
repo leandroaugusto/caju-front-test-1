@@ -5,7 +5,6 @@ export type TRegistrationsData = {
   employeeName: string,
   admissionDate: string,
   status: ERegistrationsStatus,
-  active?: boolean,
 }
 
 export type TFieldValues = Omit<TRegistrationsData, "id" | "status">

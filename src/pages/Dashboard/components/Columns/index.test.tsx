@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { customRender, screen } from "~/test-utils";
 
 import { Columns } from ".";
@@ -25,7 +26,7 @@ const registrationsMock: TRegistrationsData[] = [
   },
 ];
 
-jest.mock("../RegistrationCard", () => ({
+vi.mock("../RegistrationCard", () => ({
   RegistrationCard: ({ data }: { data: TRegistrationsData }) => (
     <div data-testid="mock-card-container">{data.status}</div>
   ),

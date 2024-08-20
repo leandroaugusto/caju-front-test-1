@@ -3,13 +3,19 @@ import { ThemeProvider } from "styled-components";
 import { render, RenderOptions, RenderResult } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { RegistrationsContextProvider } from "~/contexts/registrations";
 import { ITestUtils } from "./types";
 
 import theme from "~/theme";
 import type * as React from "react";
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      gcTime: Infinity,
+    },
+  },
+});
 
 export const QueryProvider = ({ children }: ITestUtils) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -18,9 +24,7 @@ export const QueryProvider = ({ children }: ITestUtils) => (
 const AllTheProviders: React.FC = ({ children }: ITestUtils) => {
   return (
     <QueryProvider>
-      <RegistrationsContextProvider>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      </RegistrationsContextProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </QueryProvider>
   );
 };

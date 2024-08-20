@@ -2,7 +2,19 @@
   "registrations": [
     {
       "id": "1",
-      "status": "APPROVED"
+      "admissionDate": "22/10/2023",
+      "email": "filipe@caju.com.br",
+      "employeeName": "Filipe Marins",
+      "status": "REVIEW",
+      "cpf": "78502270001"
+    },
+    {
+      "id": "2",
+      "admissionDate": "22/10/2023",
+      "email": "jose@caju.com.br",
+      "employeeName": "José Leão",
+      "status": "REPROVED",
+      "cpf": "78502270001"
     },
     {
       "id": "4",
@@ -99,14 +111,6 @@
       "email": "mail@mail.com",
       "employeeName": "Michel Teló",
       "status": "REVIEW"
-    },
-    {
-      "id": "1",
-      "employeeName": "John Doe"
-    },
-    {
-      "id": "1",
-      "employeeName": "John Doe"
     }
   ]
 }

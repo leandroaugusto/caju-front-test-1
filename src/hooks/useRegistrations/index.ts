@@ -1,7 +1,4 @@
-import { useContext } from "react";
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from "@tanstack/react-query";
-
-import { RegistrationsContext } from "~/contexts/registrations";
 
 import { TRegistrationsData } from "~/types/registrations.types";
 
@@ -34,25 +31,13 @@ export const useFetchRegistrationsByCpfHook = (cpf: string) => {
   });
 };
 
-export function useFetchinitialRegistrationsHook(page: number) {
+export function useFetchAllRegistrationsHook() {
   return useQuery({
     queryKey: [queryKey],
-    queryFn: () => Services.fetchAllRegistrations({ page }),
+    queryFn: () => Services.fetchAllRegistrations(),
     enabled: true,
-    refetchOnWindowFocus: false,
-  });
-}
-
-export function useFetchAllRegistrationsHook(page: number = 0, refetchOnMount: boolean = false) {
-  const { registrationsState } = useContext(RegistrationsContext);
-
-  return useQuery({
-    queryKey: [queryKey],
-    queryFn: () => Services.fetchAllRegistrations({ page }),
-    enabled: true,
-    initialData: registrationsState,
     placeholderData: keepPreviousData,
-    refetchOnMount,
+    refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
 }

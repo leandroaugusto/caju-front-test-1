@@ -3,6 +3,8 @@ import { cleanup } from '@testing-library/react'
 import { afterEach, vi } from 'vitest'
 
 afterEach(() => {
+  vi.resetAllMocks();
   vi.clearAllMocks();
-  cleanup()
+  vi.restoreAllMocks();
+  cleanup();
 })

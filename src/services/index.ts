@@ -4,8 +4,8 @@ import type { TRegistrationsData } from "~/types/registrations.types";
 
 import { serverHost as baseUrl, queryKey as path } from "~/constants"
 
-export async function fetchAllRegistrations({ page = 0, limit = 10 }: { page?: number; limit?: number }) {
-  const { data } = await axios.get(`${baseUrl}/${path}?_page=${page}&_per_page=${limit}`);
+export async function fetchAllRegistrations() {
+  const { data } = await axios.get(`${baseUrl}/${path}`);
   return data;
 }
 
