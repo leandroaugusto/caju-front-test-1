@@ -91,7 +91,7 @@ export const Card = ({ data }: ICardContainerProps) => {
         open={openModal}
         message={modalMessage}
         onClose={() => setOpenModal(false)}
-        confirm={() => handleActionsMap[action]()}
+        onConfirm={() => handleActionsMap[action]()}
       />
     </>
   );

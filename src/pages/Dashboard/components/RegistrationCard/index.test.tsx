@@ -15,10 +15,15 @@ const registrationsMock: TRegistrationsData = {
   id: "3",
 };
 
+const mockOnCardAction = vi.fn();
+
 describe("RegistrationCard", () => {
   it("Should show RegistrationCard component", () => {
     const { container } = customRender(
-      <RegistrationCard data={registrationsMock} />
+      <RegistrationCard
+        data={registrationsMock}
+        onCardAction={mockOnCardAction}
+      />
     );
 
     const employeeNameContainer = screen.getByTestId("employee-name");
@@ -44,7 +49,10 @@ describe("RegistrationCard", () => {
     registrationsMock.status = ERegistrationsStatus.REVIEW;
 
     const { container } = customRender(
-      <RegistrationCard data={registrationsMock} />
+      <RegistrationCard
+        data={registrationsMock}
+        onCardAction={mockOnCardAction}
+      />
     );
 
     const approvedButton = screen.getByTestId("approved-button");
@@ -54,5 +62,20 @@ describe("RegistrationCard", () => {
     expect(reproveButton).toHaveTextContent("Reprovar");
 
     expect(container).toMatchSnapshot();
+  });
+
+  it("Should interact with RegistrationCard", () => {
+    customRender(
+      <RegistrationCard
+        data={registrationsMock}
+        onCardAction={mockOnCardAction}
+      />
+    );
+
+    const approvedButton = screen.getByTestId("approved-button");
+
+    approvedButton.click();
+
+    expect(mockOnCardAction).toHaveBeenCalledTimes(1);
   });
 });

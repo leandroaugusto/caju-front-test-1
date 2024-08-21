@@ -1,55 +1,65 @@
 import { vi } from "vitest";
 import { renderHook } from "@testing-library/react-hooks";
+import { faker } from "@faker-js/faker";
+import { DefaultError } from "@tanstack/react-query";
 
-import { customRender, screen, waitFor } from "~/test-utils";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  customRender,
+  waitFor,
+  QueryProvider as wrapper,
+  queryClient,
+} from "~/test-utils";
 
 import {
   ERegistrationsStatus,
   TRegistrationsData,
 } from "~/types/registrations.types";
-import { useFetchAllRegistrationsHook } from "~/hooks/useRegistrations";
+import {
+  useFetchAllRegistrationsHook,
+  useFetchRegistrationsByCpfHook,
+} from "~/hooks/useRegistrations";
 
 import DashboardPage from ".";
 
+const fakerCpf = faker.string.numeric(11);
 const mockRegistrations: TRegistrationsData[] = [
   {
     admissionDate: "22/10/2023",
     email: "luiz@caju.com.br",
     employeeName: "Luiz Filho",
     status: ERegistrationsStatus.APPROVED,
-    cpf: "56642105087",
-    id: "3",
+    cpf: fakerCpf,
+    id: "1",
   },
   {
     admissionDate: "22/10/2023",
     email: "luiz@caju.com",
     employeeName: "Luiz Neto",
     status: ERegistrationsStatus.REVIEW,
-    cpf: "56642105088",
+    cpf: faker.string.numeric(11),
     id: "2",
   },
 ];
 
-const mockUseQuery = vi.fn(() => ({
-  isLoading: true,
-  isSuccess: false,
-  error: null,
-  data: null,
-})) as jest.Mock;
-
-const queryClient = new QueryClient();
-const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+const useQueryClient = vi.fn();
+const mockUseFetchAllRegistrations = vi.hoisted(() =>
+  vi.fn().mockReturnValue({
+    isLoading: true,
+    isSuccess: false,
+    error: null as unknown as DefaultError,
+    data: [] as TRegistrationsData[],
+  })
 );
 
-vi.doMock(import("@tanstack/react-query"), async (importOriginal) => {
-  const mod = await importOriginal();
-  return {
-    ...mod,
-    useQuery: () => mockUseQuery(),
-  };
-});
+vi.mock(import("react-router-dom"), () => ({
+  useHistory: () => ({ push: vi.fn() }),
+  useLocation: () => ({ search: "" }),
+}));
+
+vi.mock("~/hooks/useRegistrations", () => ({
+  useFetchAllRegistrationsHook: mockUseFetchAllRegistrations,
+  useFetchRegistrationsByCpfHook: mockUseFetchAllRegistrations,
+}));
 
 vi.mock("./components/Searchbar", () => ({
   SearchBar: () => <div data-testid="mock-search-bar-container">SearchBar</div>,
@@ -58,7 +68,7 @@ vi.mock("./components/Searchbar", () => ({
 vi.mock("./components/Columns", () => ({
   Columns: ({ registrations }: { registrations: TRegistrationsData[] }) => (
     <div data-testid="mock-columns-container">
-      {registrations.map((i) => (
+      {registrations?.map((i) => (
         <div key={i.id}>{i.id}</div>
       ))}
     </div>
@@ -66,8 +76,12 @@ vi.mock("./components/Columns", () => ({
 }));
 
 describe("DashboardPage", () => {
+  beforeEach(() => {
+    useQueryClient.mockImplementation(() => queryClient);
+  });
+
   it("Should show DashboardPage page", async () => {
-    mockUseQuery.mockImplementation(() => ({
+    mockUseFetchAllRegistrations.mockImplementation(() => ({
       isLoading: false,
       isSuccess: true,
       error: null,
@@ -79,12 +93,10 @@ describe("DashboardPage", () => {
     });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    const { container } = customRender(<DashboardPage />);
+    const { container, getByTestId } = customRender(<DashboardPage />);
 
-    const mockSearchBarContainer = screen.getByTestId(
-      "mock-search-bar-container"
-    );
-    const mockColumnsContainer = screen.getByTestId("mock-columns-container");
+    const mockSearchBarContainer = getByTestId("mock-search-bar-container");
+    const mockColumnsContainer = getByTestId("mock-columns-container");
 
     expect(mockSearchBarContainer).toBeInTheDocument();
     expect(mockColumnsContainer).toBeInTheDocument();
@@ -93,8 +105,7 @@ describe("DashboardPage", () => {
   });
 
   it("Should render loading state when data is not available", async () => {
-    mockUseQuery.mockImplementation(() => ({
-      ...mockUseQuery,
+    mockUseFetchAllRegistrations.mockImplementation(() => ({
       isLoading: true,
     }));
 
@@ -103,19 +114,16 @@ describe("DashboardPage", () => {
     });
     await waitFor(() => expect(result.current.isLoading).toBe(true));
 
-    customRender(<DashboardPage />);
+    const { getByTestId } = customRender(<DashboardPage />);
 
-    const mockLoadingContainer = screen.getByTestId("loading-container");
+    const mockLoadingContainer = getByTestId("loading-container");
 
     expect(mockLoadingContainer).toBeInTheDocument();
   });
 
   it("Should render error message when error is available", async () => {
-    mockUseQuery.mockImplementation(() => ({
-      ...mockUseQuery,
-      error: {
-        message: "Error message",
-      },
+    mockUseFetchAllRegistrations.mockImplementation(() => ({
+      error: { message: "Error message" },
     }));
 
     const { result } = renderHook(() => useFetchAllRegistrationsHook(), {
@@ -123,9 +131,9 @@ describe("DashboardPage", () => {
     });
     await waitFor(() => expect(result.current.error).not.toBeNull());
 
-    customRender(<DashboardPage />);
+    const { findByTestId } = customRender(<DashboardPage />);
 
-    const mockErrorContainer = screen.getByTestId("error-container");
+    const mockErrorContainer = await findByTestId("error-container");
 
     expect(mockErrorContainer).toBeInTheDocument();
     expect(mockErrorContainer).toHaveTextContent("Error message");

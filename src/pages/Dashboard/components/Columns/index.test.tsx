@@ -26,14 +26,18 @@ const registrationsMock: TRegistrationsData[] = [
   },
 ];
 
-vi.mock("../RegistrationCard", () => ({
-  RegistrationCard: ({ data }: { data: TRegistrationsData }) => (
+vi.mock("../../containers/Card", () => ({
+  Card: ({ data }: { data: TRegistrationsData }) => (
     <div data-testid="mock-card-container">{data.status}</div>
   ),
 }));
 
+vi.mock("../../components/EmptyCard", () => ({
+  EmptyCard: () => <div>EmptyCard</div>,
+}));
+
 describe("Columns", () => {
-  it("Should render Columns component", () => {
+  it("Should render Columns component with correct data", () => {
     const { container } = customRender(
       <Columns registrations={registrationsMock} />
     );
@@ -50,6 +54,15 @@ describe("Columns", () => {
     expect(columnsContent[1]).toContainElement(cardContainer[1]);
     expect(columnsContent[2]).toBeEmptyDOMElement();
 
+    expect(container).toMatchSnapshot();
+  });
+
+  it("Should render Columns component with empty data", () => {
+    const { container } = customRender(<Columns registrations={[]} />);
+
+    const emptyCard = screen.getByText("EmptyCard");
+
+    expect(emptyCard).toBeInTheDocument();
     expect(container).toMatchSnapshot();
   });
 });

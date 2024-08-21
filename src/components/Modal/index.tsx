@@ -5,7 +5,7 @@ import { ButtonSmall } from "~/components/Buttons";
 import { IModalProps } from "./types";
 import * as S from "./styles";
 
-export const Modal = ({ open, onClose, message, confirm }: IModalProps) => {
+export const Modal = ({ open, onClose, message, onConfirm }: IModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export const Modal = ({ open, onClose, message, confirm }: IModalProps) => {
           <ButtonSmall
             $buttonTheme="approved"
             aria-label="confirm"
-            onClick={confirm}
+            onClick={onConfirm}
           >
             Confirmar
           </ButtonSmall>

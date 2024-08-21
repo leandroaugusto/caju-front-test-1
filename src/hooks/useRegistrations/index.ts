@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient, keepPreviousData } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient, keepPreviousData, DefaultError } from "@tanstack/react-query";
 
 import { TRegistrationsData } from "~/types/registrations.types";
 
@@ -45,7 +45,7 @@ export function useFetchAllRegistrationsHook() {
 export function useRegistrationsHook() {
   const queryClient = useQueryClient();
 
-  const save = useMutation({
+  const saveUser = useMutation({
     mutationFn: Services.saveRegistration,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKey] })
@@ -66,5 +66,5 @@ export function useRegistrationsHook() {
     },
   })
 
-  return { save, deleteUser, reviewUser }
+  return { saveUser, deleteUser, reviewUser }
 }

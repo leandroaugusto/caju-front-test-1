@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`DashboardPage Should show DashboardPage page 1`] = `
+exports[`DashboardPage > Should show DashboardPage page 1`] = `
 <div>
   <div
-    class="sc-braxZu cCQSSo"
+    class="sc-gnpbhQ hrKaIs"
   >
     <div
       data-testid="mock-search-bar-container"
@@ -14,11 +14,28 @@ exports[`DashboardPage Should show DashboardPage page 1`] = `
       data-testid="mock-columns-container"
     >
       <div>
-        3
+        1
       </div>
       <div>
         2
       </div>
+    </div>
+    <div
+      aria-hidden="true"
+      aria-live="polite"
+      class="sc-elDIKY ePcqQD"
+      role="alert"
+    >
+      <p
+        class="sc-fQpRED grzTrj"
+      />
+      <button
+        aria-label="close"
+        class="sc-gJhJTp hEpyQs"
+        data-testid="small-button"
+      >
+        OK
+      </button>
     </div>
   </div>
 </div>

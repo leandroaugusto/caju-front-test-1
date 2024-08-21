@@ -1,0 +1,93 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card > Should show Card container 1`] = `
+<div>
+  <div
+    data-testid="mock-registration-card"
+  >
+    <button
+      data-testid="mock-card-action-delete"
+    >
+      Delete
+    </button>
+    <button
+      data-testid="mock-card-action-approve"
+    >
+      Approve
+    </button>
+    <button
+      data-testid="mock-card-action-reprove"
+    >
+      Reprove
+    </button>
+    <button
+      data-testid="mock-card-action-review"
+    >
+      Review
+    </button>
+  </div>
+  <div
+    data-testid="mock-snackbar"
+  />
+  <div
+    data-testid="mock-modal"
+  >
+    <span
+      data-testid="mock-modal-message"
+    >
+      Deseja revisar a admissão de Luiz Filho?
+    </span>
+    <button
+      data-testid="mock-modal-confirm"
+    >
+      onConfirm
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Card > Should show Card with another status 1`] = `
+<div>
+  <div
+    data-testid="mock-registration-card"
+  >
+    <button
+      data-testid="mock-card-action-delete"
+    >
+      Delete
+    </button>
+    <button
+      data-testid="mock-card-action-approve"
+    >
+      Approve
+    </button>
+    <button
+      data-testid="mock-card-action-reprove"
+    >
+      Reprove
+    </button>
+    <button
+      data-testid="mock-card-action-review"
+    >
+      Review
+    </button>
+  </div>
+  <div
+    data-testid="mock-snackbar"
+  />
+  <div
+    data-testid="mock-modal"
+  >
+    <span
+      data-testid="mock-modal-message"
+    >
+      Deseja revisar a admissão de Luiz Filho?
+    </span>
+    <button
+      data-testid="mock-modal-confirm"
+    >
+      onConfirm
+    </button>
+  </div>
+</div>
+`;

@@ -39,7 +39,7 @@ const NewUserPage = () => {
 
   const { data: registrations } = useFetchAllRegistrationsHook();
 
-  const { save } = useRegistrationsHook();
+  const { saveUser } = useRegistrationsHook();
 
   const {
     register,
@@ -81,13 +81,13 @@ const NewUserPage = () => {
     }
   };
 
-  const saveUser = async () => {
+  const save = async () => {
     if (!Object.hasOwn(payload.current, "id")) return;
 
     setLoading(true);
 
     try {
-      await save.mutateAsync(payload.current);
+      await saveUser.mutateAsync(payload.current);
       goToHomePage({ state: "Admissão salva com sucesso" });
     } catch (error) {
       setOpenModal(false);
@@ -126,7 +126,7 @@ const NewUserPage = () => {
           open={openModal}
           onClose={() => setOpenModal(false)}
           message="Deseja registrar nova admissão?"
-          confirm={saveUser}
+          onConfirm={save}
         />
       </S.Card>
     </S.Container>

@@ -44,7 +44,7 @@ const mockedData = [{
 }];
 
 const mockedFns = {
-  save: vi.fn(),
+  saveUser: vi.fn(),
   deleteUser: vi.fn(),
   reviewUser: vi.fn(),
 }
@@ -116,7 +116,7 @@ describe('useRegistrationsHook', async () => {
 
     useMutation.mockImplementationOnce((options) => {
       options.onSuccess();
-      return { mutate: mockedFns.save };
+      return { mutate: mockedFns.saveUser };
     });
 
     useMutation.mockImplementationOnce((options) => {
@@ -133,7 +133,7 @@ describe('useRegistrationsHook', async () => {
 
     await act(async () => {
       await Promise.all([
-        result.current.save.mutate({
+        result.current.saveUser.mutate({
           id: fakerId,
           employeeName: faker.person.fullName(),
         }),

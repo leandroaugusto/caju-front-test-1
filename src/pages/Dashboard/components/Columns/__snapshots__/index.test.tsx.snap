@@ -1,5 +1,141 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Columns > Should render Columns component 1`] = `
+<div>
+  <div
+    class="sc-gJhJTp bwGdCM"
+    data-testid="columns-container"
+  >
+    <div
+      class="sc-elDIKY bZgjEq"
+    >
+      <h3
+        class="sc-fQpRED kjqNAS"
+        data-testid="column-title"
+      >
+        Pronto para revisar
+      </h3>
+      <div
+        class="sc-dsLQwm bVIPOl"
+        data-testid="column-content"
+      >
+        <div
+          data-testid="mock-card-container"
+        >
+          REVIEW
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-elDIKY fOZBfM"
+    >
+      <h3
+        class="sc-fQpRED ggbXnW"
+        data-testid="column-title"
+      >
+        Aprovado
+      </h3>
+      <div
+        class="sc-dsLQwm bVIPOl"
+        data-testid="column-content"
+      >
+        <div
+          data-testid="mock-card-container"
+        >
+          APPROVED
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-elDIKY gGxWjz"
+    >
+      <h3
+        class="sc-fQpRED hNmPrC"
+        data-testid="column-title"
+      >
+        Reprovado
+      </h3>
+      <div
+        class="sc-dsLQwm bVIPOl"
+        data-testid="column-content"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Columns > Should render Columns component with correct data 1`] = `
+<div>
+  <div
+    class="sc-braxZu bxYGaR"
+    data-testid="columns-container"
+  >
+    <div
+      class="sc-gJhJTp bitWDb"
+    >
+      <h3
+        class="sc-elDIKY cUHPXc"
+        data-testid="column-title"
+      >
+        Pronto para revisar
+      </h3>
+      <div
+        class="sc-fQpRED klzfkN"
+        data-testid="column-content"
+      >
+        <div
+          data-testid="mock-card-container"
+        >
+          REVIEW
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-gJhJTp eDijzJ"
+    >
+      <h3
+        class="sc-elDIKY fHnZSM"
+        data-testid="column-title"
+      >
+        Aprovado
+      </h3>
+      <div
+        class="sc-fQpRED klzfkN"
+        data-testid="column-content"
+      >
+        <div
+          data-testid="mock-card-container"
+        >
+          APPROVED
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-gJhJTp bJrLGG"
+    >
+      <h3
+        class="sc-elDIKY kcZFWs"
+        data-testid="column-title"
+      >
+        Reprovado
+      </h3>
+      <div
+        class="sc-fQpRED klzfkN"
+        data-testid="column-content"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Columns > Should render Columns component with empty data 1`] = `
+<div>
+  <div>
+    EmptyCard
+  </div>
+</div>
+`;
+
 exports[`Columns Should render Columns component 1`] = `
 <div>
   <div

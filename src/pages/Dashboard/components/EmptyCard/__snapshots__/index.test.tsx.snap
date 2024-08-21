@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Columns > Should render Columns component with correct data 1`] = `
+<div>
+  <div
+    class="sc-braxZu eYemEd"
+    data-testid="empty-card-container"
+  >
+    <h3
+      data-testid="employee-name"
+    >
+      Não foram encontrados registros para essa busca
+    </h3>
+  </div>
+</div>
+`;
