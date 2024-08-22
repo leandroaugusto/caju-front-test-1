@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient, keepPreviousData, DefaultError } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 
 import { TRegistrationsData } from "~/types/registrations.types";
 

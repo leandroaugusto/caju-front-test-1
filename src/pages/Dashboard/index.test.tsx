@@ -50,7 +50,7 @@ const mockUseFetchAllRegistrations = vi.hoisted(() =>
   })
 );
 
-vi.mock(import("react-router-dom"), () => ({
+vi.mock("react-router-dom", () => ({
   useHistory: () => ({ push: vi.fn() }),
   useLocation: () => ({ search: "" }),
 }));
