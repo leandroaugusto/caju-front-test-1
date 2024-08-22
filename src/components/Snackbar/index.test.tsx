@@ -1,4 +1,3 @@
-import { vi } from "vitest";
 import { customRender, fireEvent } from "~/test-utils";
 import { SnackBar } from ".";
 

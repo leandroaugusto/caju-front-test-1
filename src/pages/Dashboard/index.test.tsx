@@ -1,4 +1,3 @@
-import { vi } from "vitest";
 import { renderHook } from "@testing-library/react-hooks";
 import { faker } from "@faker-js/faker";
 import { DefaultError } from "@tanstack/react-query";

@@ -1,0 +1,199 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Form > Should render Form 1`] = `
+<div>
+  <form
+    class="sc-gnpbhQ jfSDEr"
+  >
+    <fieldset
+      class="sc-braxZu iUDKFC"
+    >
+      <label
+        class="sc-gJhJTp kIXmzW"
+        for="employeeName"
+      >
+        Nome
+      </label>
+      <input
+        class="sc-elDIKY jqaaIW"
+        id="employeeName"
+        name="employeeName"
+        placeholder="Nome"
+        type="text"
+      />
+      <span
+        class="sc-fQpRED dUfiZf"
+      />
+    </fieldset>
+    <fieldset
+      class="sc-braxZu iUDKFC"
+    >
+      <label
+        class="sc-gJhJTp kIXmzW"
+        for="email"
+      >
+        Email
+      </label>
+      <input
+        class="sc-elDIKY jqaaIW"
+        id="email"
+        name="email"
+        placeholder="Email"
+        type="email"
+      />
+      <span
+        class="sc-fQpRED dUfiZf"
+      />
+    </fieldset>
+    <fieldset
+      class="sc-braxZu iUDKFC"
+    >
+      <label
+        class="sc-gJhJTp kIXmzW"
+        for="cpf"
+      >
+        CPF
+      </label>
+      <input
+        class="sc-elDIKY jqaaIW"
+        id="cpf"
+        name="cpf"
+        placeholder="CPF"
+        type="tel"
+      />
+      <span
+        class="sc-fQpRED dUfiZf"
+      />
+    </fieldset>
+    <fieldset
+      class="sc-braxZu iUDKFC"
+    >
+      <label
+        class="sc-gJhJTp kIXmzW"
+        for="admissionDate"
+      >
+        Data de admissão
+      </label>
+      <input
+        class="sc-elDIKY jqaaIW"
+        id="admissionDate"
+        name="admissionDate"
+        placeholder="Data de admissão"
+        type="date"
+      />
+      <span
+        class="sc-fQpRED dUfiZf"
+      />
+    </fieldset>
+    <button
+      class="sc-dsLQwm bIItHX"
+      type="submit"
+    >
+      Cadastrar
+    </button>
+  </form>
+</div>
+`;
+
+exports[`Form > Should render Form with errors 1`] = `
+<div>
+  <form
+    class="sc-gnpbhQ jfSDEr"
+  >
+    <fieldset
+      class="sc-braxZu iUDKFC"
+    >
+      <label
+        class="sc-gJhJTp HOZvf"
+        for="employeeName"
+      >
+        Nome
+      </label>
+      <input
+        class="sc-elDIKY fPchqO"
+        id="employeeName"
+        name="employeeName"
+        placeholder="Nome"
+        type="text"
+      />
+      <span
+        class="sc-fQpRED dUfiZf"
+      >
+        Required
+      </span>
+    </fieldset>
+    <fieldset
+      class="sc-braxZu iUDKFC"
+    >
+      <label
+        class="sc-gJhJTp HOZvf"
+        for="email"
+      >
+        Email
+      </label>
+      <input
+        class="sc-elDIKY fPchqO"
+        id="email"
+        name="email"
+        placeholder="Email"
+        type="email"
+      />
+      <span
+        class="sc-fQpRED dUfiZf"
+      >
+        Required
+      </span>
+    </fieldset>
+    <fieldset
+      class="sc-braxZu iUDKFC"
+    >
+      <label
+        class="sc-gJhJTp HOZvf"
+        for="cpf"
+      >
+        CPF
+      </label>
+      <input
+        class="sc-elDIKY fPchqO"
+        id="cpf"
+        name="cpf"
+        placeholder="CPF"
+        type="tel"
+      />
+      <span
+        class="sc-fQpRED dUfiZf"
+      >
+        Required
+      </span>
+    </fieldset>
+    <fieldset
+      class="sc-braxZu iUDKFC"
+    >
+      <label
+        class="sc-gJhJTp HOZvf"
+        for="admissionDate"
+      >
+        Data de admissão
+      </label>
+      <input
+        class="sc-elDIKY fPchqO"
+        id="admissionDate"
+        name="admissionDate"
+        placeholder="Data de admissão"
+        type="date"
+      />
+      <span
+        class="sc-fQpRED dUfiZf"
+      >
+        Required
+      </span>
+    </fieldset>
+    <button
+      class="sc-dsLQwm bIItHX"
+      type="submit"
+    >
+      Cadastrar
+    </button>
+  </form>
+</div>
+`;

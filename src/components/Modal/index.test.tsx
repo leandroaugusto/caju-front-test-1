@@ -1,17 +1,15 @@
-import { vi } from "vitest";
-
 import { customRender, fireEvent, screen } from "~/test-utils";
 import { Modal } from ".";
 
 describe("Modal", () => {
   const mockOnClose = vi.fn();
-  const mockConfirm = vi.fn();
+  const mockOnConfirm = vi.fn();
 
   const defaultProps = {
     open: true,
     onClose: mockOnClose,
     message: "Mock message",
-    confirm: mockConfirm,
+    onConfirm: mockOnConfirm,
   };
 
   afterEach(() => {
@@ -73,6 +71,6 @@ describe("Modal", () => {
     const confirmButton = getByLabelText("confirm");
 
     fireEvent.click(confirmButton);
-    expect(mockConfirm).toHaveBeenCalled();
+    expect(mockOnConfirm).toHaveBeenCalled();
   });
 });

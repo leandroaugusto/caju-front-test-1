@@ -1,4 +1,3 @@
-import { vi } from "vitest";
 import { customRender, screen } from "~/test-utils";
 
 import { Columns } from ".";
