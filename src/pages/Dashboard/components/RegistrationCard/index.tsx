@@ -40,7 +40,7 @@ export const RegistrationCard = ({
         {data.status === ERegistrationsStatus.REVIEW ? (
           <>
             <ButtonSmall
-              data-testid="reproved-button"
+              data-testid="reprove-button"
               $buttonTheme="reproved"
               onClick={() => onCardAction("reprove")}
             >
@@ -48,7 +48,7 @@ export const RegistrationCard = ({
             </ButtonSmall>
 
             <ButtonSmall
-              data-testid="approved-button"
+              data-testid="approve-button"
               $buttonTheme="approved"
               onClick={() => onCardAction("approve")}
             >
@@ -65,7 +65,10 @@ export const RegistrationCard = ({
           </ButtonSmall>
         )}
 
-        <HiOutlineTrash onClick={() => onCardAction("delete")} />
+        <HiOutlineTrash
+          data-testid="delete-button"
+          onClick={() => onCardAction("delete")}
+        />
       </S.Actions>
     </S.Card>
   );

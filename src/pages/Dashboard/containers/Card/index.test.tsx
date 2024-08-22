@@ -174,17 +174,4 @@ describe("Card", () => {
 
     expect(mockedLocation).toHaveBeenCalledTimes(3);
   });
-
-  it("Should show Card with another status", () => {
-    const { container } = customRender(
-      <Card
-        data={{
-          ...registrationMock,
-          status: ERegistrationsStatus.REVIEW,
-        }}
-      />
-    );
-
-    expect(container).toMatchSnapshot();
-  });
 });

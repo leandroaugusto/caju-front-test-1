@@ -21,7 +21,7 @@ export const SearchBar = ({ register }: ISearchBarProps) => {
 
   return (
     <S.Container data-testid="search-bar-container">
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form data-testid="search-form" onSubmit={(e) => e.preventDefault()}>
         <TextField
           id="cpf"
           type="tel"
@@ -31,10 +31,19 @@ export const SearchBar = ({ register }: ISearchBarProps) => {
       </form>
 
       <S.Actions>
-        <IconButton aria-label="refetch">
-          <HiRefresh onClick={() => refetch()} />
+        <IconButton
+          data-testid="refetch-button"
+          aria-label="refetch"
+          onClick={() => refetch()}
+        >
+          <HiRefresh />
         </IconButton>
-        <Button onClick={goToNewAdmissionPage}>Nova Admissão</Button>
+        <Button
+          data-testid="new-admission-button"
+          onClick={goToNewAdmissionPage}
+        >
+          Nova Admissão
+        </Button>
       </S.Actions>
     </S.Container>
   );

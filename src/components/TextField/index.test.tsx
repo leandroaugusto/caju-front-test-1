@@ -3,28 +3,28 @@ import { customRender, screen } from "~/test-utils";
 
 import { TextField } from ".";
 
-describe("TextField", () => {
-  const testCases = [
-    {
-      id: "name",
-      label: "Test 1",
-      type: "text",
-      placeholder: "Enter text",
-      error: "Error message",
-    },
-    {
-      id: "email",
-      label: "Email",
-      type: "email",
-      error: "Error message",
-    },
-    {
-      id: "cpf",
-      type: "tel",
-      error: "",
-    },
-  ];
+const testCases = [
+  {
+    id: "name",
+    label: "Test 1",
+    type: "text",
+    placeholder: "Enter text",
+    error: "Error message",
+  },
+  {
+    id: "email",
+    label: "Email",
+    type: "email",
+    error: "Error message",
+  },
+  {
+    id: "cpf",
+    type: "tel",
+    error: "",
+  },
+];
 
+describe("TextField", () => {
   it.each(testCases)("renders TextField with props: %s", async (input) => {
     customRender(<TextField {...input} />);
 

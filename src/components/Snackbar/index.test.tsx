@@ -3,14 +3,14 @@ import { SnackBar } from ".";
 
 vi.useFakeTimers();
 
+const onCloseMock = vi.fn();
+
+const testCases = [
+  { open: true, message: "Test message 1", autoHideDuration: 5000 },
+  { open: false, message: "Test message 2", autoHideDuration: 3000 },
+];
+
 describe("SnackBar", () => {
-  const onCloseMock = vi.fn();
-
-  const testCases = [
-    { open: true, message: "Test message 1", autoHideDuration: 5000 },
-    { open: false, message: "Test message 2", autoHideDuration: 3000 },
-  ];
-
   it.each(testCases)("should render correctly with props: %s", (testCase) => {
     const { getByRole, queryByRole } = customRender(
       <SnackBar

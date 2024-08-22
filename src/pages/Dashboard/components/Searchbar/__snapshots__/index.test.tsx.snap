@@ -6,7 +6,9 @@ exports[`SearchBar > Should show SearchBar component 1`] = `
     class="sc-la-DxNn dfIseU"
     data-testid="search-bar-container"
   >
-    <form>
+    <form
+      data-testid="search-form"
+    >
       <fieldset
         class="sc-fQpRED gjvMPM"
       >
@@ -28,6 +30,7 @@ exports[`SearchBar > Should show SearchBar component 1`] = `
       <button
         aria-label="refetch"
         class="sc-elDIKY feEgea"
+        data-testid="refetch-button"
       >
         <svg
           aria-hidden="true"
@@ -48,6 +51,7 @@ exports[`SearchBar > Should show SearchBar component 1`] = `
       </button>
       <button
         class="sc-braxZu etJSfF"
+        data-testid="new-admission-button"
       >
         Nova Admissão
       </button>
