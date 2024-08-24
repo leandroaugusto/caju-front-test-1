@@ -1,4 +1,4 @@
-import { customRender, fireEvent, act, waitFor } from "~/test-utils";
+import { customRender, fireEvent } from "~/test-utils";
 import routes from "~/router/routes";
 
 import { SearchBar } from ".";
@@ -47,7 +47,7 @@ describe("SearchBar", () => {
 
     fireEvent.click(newAdmissionButton);
 
-    expect(mockUseHistory.push).toHaveBeenCalledTimes(1);
+    expect(mockUseHistory.push).toHaveBeenCalledOnce();
     expect(mockUseHistory.push).toHaveBeenCalledWith(routes.newUser);
   });
 

@@ -49,7 +49,7 @@ describe("RegistrationCard", () => {
     await userEvent.click(deleteButton);
 
     expect(deleteButton).toBeInTheDocument();
-    expect(mockOnCardAction).toHaveBeenCalledTimes(1);
+    expect(mockOnCardAction).toHaveBeenCalledOnce();
     expect(container).toMatchSnapshot();
   });
 

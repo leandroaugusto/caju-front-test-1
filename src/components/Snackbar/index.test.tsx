@@ -29,7 +29,7 @@ describe("SnackBar", () => {
 
       vi.advanceTimersByTime(testCase.autoHideDuration);
 
-      expect(onCloseMock).toHaveBeenCalledTimes(1);
+      expect(onCloseMock).toHaveBeenCalledOnce();
     } else {
       expect(queryByRole("alert")).toBeNull();
     }
@@ -49,6 +49,6 @@ describe("SnackBar", () => {
 
     fireEvent.click(button);
 
-    expect(onCloseMock).toHaveBeenCalledTimes(1);
+    expect(onCloseMock).toHaveBeenCalledOnce();
   });
 });

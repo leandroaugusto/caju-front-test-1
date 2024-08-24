@@ -50,6 +50,28 @@ const mockUseFetchAllRegistrations = vi.hoisted(() =>
   })
 );
 
+const mockWatch = vi.fn();
+const mockRegister = vi.fn();
+const mockHandleSubmit = vi.fn();
+
+const mockUseForm = vi.hoisted(() => vi.fn());
+const mockYupResolver = vi.hoisted(() => vi.fn());
+const mockYup = vi.hoisted(() => ({
+  object: vi.fn(),
+  string: vi.fn(),
+  required: vi.fn(),
+}));
+
+vi.mock("react-hook-form", () => ({
+  useForm: mockUseForm,
+}));
+
+vi.mock("@hookform/resolvers/yup", () => ({
+  yupResolver: mockYupResolver,
+}));
+
+vi.mock("yup", () => mockYup);
+
 vi.mock("react-router-dom", () => ({
   useHistory: () => ({ push: vi.fn() }),
   useLocation: () => ({ search: "" }),
@@ -77,6 +99,11 @@ vi.mock("./components/Columns", () => ({
 describe("DashboardPage", () => {
   beforeEach(() => {
     useQueryClient.mockImplementation(() => queryClient);
+    mockUseForm.mockReturnValue({
+      watch: mockWatch,
+      register: mockRegister,
+      handleSubmit: mockHandleSubmit,
+    });
   });
 
   it("Should show DashboardPage page", async () => {
@@ -136,5 +163,19 @@ describe("DashboardPage", () => {
 
     expect(mockErrorContainer).toBeInTheDocument();
     expect(mockErrorContainer).toHaveTextContent("Error message");
+  });
+
+  it("should call useForm with yupResolver", () => {
+    const schema = mockYup.object.mockReturnValue({
+      name: mockYup.string(),
+    });
+
+    mockUseForm.mockReturnValue({
+      resolver: mockYupResolver(schema),
+    });
+
+    expect(mockUseForm).toHaveBeenCalledWith({
+      resolver: mockYupResolver(schema),
+    });
   });
 });

@@ -41,6 +41,6 @@ describe("Form", () => {
 
     button.click();
 
-    expect(mockOnSubmit).toHaveBeenCalledTimes(1);
+    expect(mockOnSubmit).toHaveBeenCalledOnce();
   });
 });

@@ -57,7 +57,7 @@ describe('useFetchAllRegistrationsHook', async () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual(mockedData);
-    expect(spyOnServices).toHaveBeenCalledTimes(1);
+    expect(spyOnServices).toHaveBeenCalledOnce();
 
     await act(async () => {
       await result.current.refetch();
@@ -74,7 +74,7 @@ describe('useFetchRegistrationsByCpfHook', async () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true), { timeout: 3000 });
 
     expect(result.current.data).toEqual([mockedData[0]]);
-    expect(spyOnGetQueryData).toHaveBeenCalledTimes(1);
+    expect(spyOnGetQueryData).toHaveBeenCalledOnce();
     expect(spyOnGetQueryData).toHaveBeenCalledWith([queryKey]);
   });
 
@@ -90,13 +90,13 @@ describe('useFetchRegistrationsByCpfHook', async () => {
 
     expect(result.current.data).toEqual([mockedData[0]]);
 
-    expect(spyOnServices).toHaveBeenCalledTimes(1);
+    expect(spyOnServices).toHaveBeenCalledOnce();
     expect(spyOnServices).toHaveBeenCalledWith(anotherFakerCpf);
 
-    expect(spyOnGetQueryData).toHaveBeenCalledTimes(1);
+    expect(spyOnGetQueryData).toHaveBeenCalledOnce();
     expect(spyOnGetQueryData).toHaveBeenCalledWith([queryKey]);
 
-    expect(spyOnSetQueryClient).toHaveBeenCalledTimes(1);
+    expect(spyOnSetQueryClient).toHaveBeenCalledOnce();
     expect(spyOnSetQueryClient).toHaveBeenCalledWith([queryKey], expect.any(Function));
   });
 });
